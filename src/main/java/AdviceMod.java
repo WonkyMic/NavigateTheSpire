@@ -1,10 +1,10 @@
+import Map.MapUtil;
 import basemod.BaseMod;
 import basemod.interfaces.PostDungeonInitializeSubscriber;
 
 import basemod.interfaces.PostUpdateSubscriber;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.map.MapGenerator;
 
 @SpireInitializer
 public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSubscriber {
@@ -52,7 +52,9 @@ public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSub
         if ( null != AbstractDungeon.map)
         {
             haveMapData = true;
-            System.out.println("**MIC - map :: \n" + MapGenerator.toString(AbstractDungeon.map, Boolean.valueOf(true)));
+
+            MapUtil mUtil = new MapUtil();
+            mUtil.createOptimalPath();
         }
     }
 
