@@ -1,63 +1,32 @@
-package devthespire;
-
-
+import basemod.helpers.RelicType;
+import basemod.interfaces.*;
+import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
-import basemod.interfaces.PostBattleSubscriber;
-import basemod.interfaces.PostDrawSubscriber;
-import basemod.interfaces.PostDungeonInitializeSubscriber;
-import basemod.interfaces.PostExhaustSubscriber;
-import devthespire.actions.PlayLeftCardFromHandAction;
-import devthespire.cards.AutoPlayForm;
-import basemod.interfaces.EditCardsSubscriber;
-import basemod.interfaces.OnCardUseSubscriber;
+import cards.AutoPlayForm;
+import com.megacrit.cardcrawl.localization.RelicStrings;
+import relics.AutoPlayRelic;
 
 //When all External Libraries are added from the pom.xml using maven the code can be uncommented.
 
 import basemod.BaseMod;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+
 @SpireInitializer
-public class DevTheSpire implements PostDrawSubscriber, PostExhaustSubscriber,
-PostBattleSubscriber, PostDungeonInitializeSubscriber, EditCardsSubscriber, OnCardUseSubscriber {
-	
-	private int count, totalCount;
-	
-	private void resetCounts() {
-		totalCount = count = 0;
-	}
-	
-	@Override
-	public void receivePostDraw(AbstractCard card) {
-	    System.out.println(card.name + " was drawn!");
-	}
-	
-	@Override
-	public void receivePostExhaust(AbstractCard c) {
-		count++;
-		totalCount++;
-	}
-	
-	@Override
-	public void receivePostBattle(AbstractRoom r) {
-		System.out.println(count + " cards were exhausted this battle, " +
-			totalCount + " cards have been exhausted so far this act.");
-		count = 0;
-	}
-	
-	@Override
-	public void receivePostDungeonInitialize() {
-		resetCounts();
-	}
+public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, EditRelicsSubscriber, PostCreateIroncladStartingRelicsSubscriber, PostCreateSilentStartingRelicsSubscriber, EditStringsSubscriber {
+
+
+	public boolean inBattle = false;
 
 
     public DevTheSpire(){
         //Use this for when you subscribe to any hooks offered by BaseMod.
         BaseMod.subscribe(this);
+		//BaseMod.subscribeToPostCreateStartingRelics(this);
     }
 
     //Used by @SpireInitializer
@@ -75,31 +44,31 @@ PostBattleSubscriber, PostDungeonInitializeSubscriber, EditCardsSubscriber, OnCa
 		BaseMod.addCard(new AutoPlayForm());
 		
 	}
-	
-	public static final String makePath(String resource) {
-		String result = "img/" + resource;
-
-		return result;
-	}
 
 	@Override
 	public void receiveCardUsed(AbstractCard arg0) {
-		AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.utility.WaitAction(30));
-    	AbstractPlayer p = AbstractDungeon.player;
-    	System.out.println("receiveCardUsed listener");
-		if (AbstractDungeon.player.hand.group.size() > 0)
-		{
-			AbstractCard cardToPlay = AbstractDungeon.player.hand.group.get(0);
-			System.out.println("Seeing if I can play any cards.");
-			System.out.println("Card costs: " + cardToPlay.cost);
-			System.out.println("Energy Available: " + EnergyPanel.getCurrentEnergy());
-			if (cardToPlay.cost <= EnergyPanel.getCurrentEnergy())
-			{
-		        AbstractDungeon.actionManager.addToBottom(new PlayLeftCardFromHandAction());
-			}
-			
-		}
-		
+		System.out.println("receiveCardUsed listener new");
+		AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
+	}
+
+
+	@Override
+	public void receiveEditRelics() {
+    	BaseMod.addRelic(new AutoPlayRelic(), RelicType.SHARED);
+	}
+
+	@Override
+	public boolean receivePostCreateStartingRelics(ArrayList<String> relics) {
+		// here we simply give the player na'vi in addition to their other starting relics
+		relics.add("Navi");
+		return false; //return false to retain normal starting relic, true will replace.
+	}
+
+	@Override
+	public void receiveEditStrings() {
+		String relicStrings = Gdx.files.internal("localization/relicstrings.json").readString(
+				String.valueOf(StandardCharsets.UTF_8));
+		BaseMod.loadCustomStrings(RelicStrings.class, relicStrings);
 	}
 
 }

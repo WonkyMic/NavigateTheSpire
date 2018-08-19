@@ -1,4 +1,4 @@
-package devthespire.cards;
+package cards;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.abstracts.CustomCard;
-import devthespire.powers.AutoPlayFormPower;
-import devthespire.powers.AutoPlayFormUpgradePower;
+import powers.AutoPlayFormPower;
+import powers.AutoPlayFormUpgradePower;
 
 public class AutoPlayForm extends CustomCard {
 	public static final String ID = "AutoPlayForm";

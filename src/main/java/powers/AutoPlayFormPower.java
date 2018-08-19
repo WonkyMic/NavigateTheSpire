@@ -1,11 +1,11 @@
-package devthespire.powers;
+package powers;
 
+import cards.PlayCards;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import devthespire.actions.PlayLeftCardFromHandAction;
 
 public class AutoPlayFormPower extends AbstractPower {
 	public static final String POWER_ID = "AutoPlayFormPower";
@@ -26,10 +26,18 @@ public class AutoPlayFormPower extends AbstractPower {
 		this.img = new Texture("img/powers/AutoPlayPower.png");
 		
 	}
-	
+	/*
 	@Override
-	public void atStartOfTurnPostDraw() {
-		System.out.println("StartOfTurnPostDraw");
-		AbstractDungeon.actionManager.addToBottom(new PlayLeftCardFromHandAction());
+	public void atStartOfTurnPostDraw () {
+		System.out.println("atStartOfTurnPostDraw");
+		AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
 	}
+
+
+	@Override
+	public void atStartOfTurn () {
+		System.out.println("atStartOfTurn");
+		AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
+	}
+	*/
 }

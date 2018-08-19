@@ -1,0 +1,11 @@
+{
+  "Navi": {
+    "NAME": "Navi",
+    "FLAVOR": "A little fairy that tells you what to do.",
+    "DESCRIPTIONS": [
+      "At the start of each combat,",
+      " gain a power that",
+      " does things."
+    ]
+  }
+}
