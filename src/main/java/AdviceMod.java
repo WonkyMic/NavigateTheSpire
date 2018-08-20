@@ -4,16 +4,18 @@ import basemod.interfaces.PostDungeonInitializeSubscriber;
 
 import basemod.interfaces.PostUpdateSubscriber;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;
+
+import java.lang.reflect.Method;
 
 @SpireInitializer
 public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSubscriber {
 
-    private int count, totalCount;
-
-    private void resetCounts() {
-        totalCount = count = 0;
-    }
+    int previousFloor = -1;
 
     public AdviceMod()
     {
@@ -47,27 +49,20 @@ public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSub
                                 + "Boss List :: " + AbstractDungeon.getBossRewardCards() + "\n");
     }
 
-    private void populateMapData()
+    private void invokeNextMapNode()
     {
-        if ( null != AbstractDungeon.map)
-        {
-            haveMapData = true;
-
-            MapUtil mUtil = new MapUtil();
-            mUtil.createOptimalPath();
-        }
+        previousFloor = AbstractDungeon.floorNum;
+        MapUtil mUtil = new MapUtil();
+        mUtil.getNextMapRoomNode(AbstractDungeon.getCurrMapNode());
     }
 
     @Override
     public void receivePostDungeonInitialize()
     {
-        resetCounts();
-        seeRelicPool();
-        seeCardPool();
-        //seeMapLayout();
+        //seeRelicPool();
+        //seeCardPool();
+        previousFloor = -1;
     }
-
-    boolean haveMapData = false;
 
     /**
      * This method is invoked constantly, careful when adding to this.
@@ -75,9 +70,9 @@ public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSub
     @Override
     public void receivePostUpdate()
     {
-        if ( !haveMapData )
+        if ( previousFloor != AbstractDungeon.floorNum && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP)
         {
-            populateMapData();
+            invokeNextMapNode();
         }
     }
 

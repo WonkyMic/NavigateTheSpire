@@ -2,18 +2,20 @@ package Map;
 
 public class EvaluatePath
 {
-    String path = "";
-    int value = 0;
-
-    public EvaluatePath(String path)
+    public static int calculateValue(String path)
     {
-        // System.out.println("EvaluatePath constructor setting path to :: " + path);
-        this.path = path;
-    }
+        int value = 0;
+        // Sample Data
+        // MM?MMER?TER$?MR
 
-    public int getValue()
-    {
-        // System.out.println("EvaluatePath.getValue()");
+        int monster = 0;
+        int elite = 0;
+        int rest = 0;
+        int treasure = 0;
+        int event = 0;
+        int shop = 0;
+
+
 
 
         // System.out.println("path value is :: " + value);

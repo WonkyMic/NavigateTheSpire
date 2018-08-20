@@ -1,10 +1,12 @@
 package Map;
 
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -12,27 +14,50 @@ import java.util.Map.Entry;
 
 public class MapUtil
 {
-    ArrayList<ArrayList<MapRoomNode>> nodes = AbstractDungeon.map;
+    ArrayList<ArrayList<MapRoomNode>> mapNodes = AbstractDungeon.map;
     ArrayList<ArrayList<MapRoomNode>> paths = new ArrayList<ArrayList<MapRoomNode>>();
-    //ArrayList<MapRoomNode> path = new ArrayList<MapRoomNode>();
 
-    public void createOptimalPath()
+    public void getNextMapRoomNode(MapRoomNode currentNode)
     {
-        // Build all possible paths
-        for ( MapRoomNode node : nodes.get(0))
+        if (AbstractDungeon.getCurrRoom().phase == com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMPLETE) {
+            MapRoomNode nextNode = createOptimalPath(currentNode).get(1);
+
+            // Trigger nextNode
+            AbstractDungeon.nextRoom = nextNode;
+            CardCrawlGame.music.fadeOutTempBGM();
+            AbstractDungeon.pathX.add(Integer.valueOf(nextNode.x));
+            AbstractDungeon.pathY.add(Integer.valueOf(nextNode.y));
+            AbstractDungeon.topLevelEffects.add(new com.megacrit.cardcrawl.vfx.FadeWipeParticle());
+            AbstractDungeon.nextRoomTransitionStart();
+        }
+    }
+
+    private ArrayList<MapRoomNode> createOptimalPath(MapRoomNode currentNode)
+    {
+        ArrayList<ArrayList<MapRoomNode>> nodesToIterateOver = new ArrayList<ArrayList<MapRoomNode>>();
+
+        if ( currentNode.y < 0 )
         {
-            if ( node.hasEdges() )
-            {
+            nodesToIterateOver.addAll(mapNodes);
+        }
+        else
+        {
+            nodesToIterateOver.add(new ArrayList<MapRoomNode>(Arrays.asList(currentNode)));
+        }
+
+        // Build all possible paths
+        for (MapRoomNode node : nodesToIterateOver.get(0)) {
+            if (node.hasEdges()) {
                 ArrayList<MapRoomNode> path = new ArrayList<MapRoomNode>();
                 addNodeToPath(node, path);
             }
         }
 
         // Parse all possible paths to get room type and pick the one with the most elites
-        pickBestPath();
+        return pickBestPath();
     }
 
-    private void pickBestPath()
+    private ArrayList<MapRoomNode> pickBestPath()
     {
         // Storing path as:
         //      key   :: index within paths
@@ -41,7 +66,7 @@ public class MapUtil
 
         for ( int i=0 ; i<paths.size() ; i++ )
         {
-            // Converting nodes to their room symbol
+            // Converting mapNodes to their room symbol
             // to be evaluated by class EvaluatePath
             // example :: MM?MMER?TER$?MR
             StringBuilder str = new StringBuilder();
@@ -49,8 +74,7 @@ public class MapUtil
             {
                 str.append(node.getRoomSymbol(true));
             }
-            EvaluatePath evaluatePath = new EvaluatePath(str.toString());
-            pathEvaluated.put(i, evaluatePath.getValue());
+            pathEvaluated.put(i, EvaluatePath.calculateValue(str.toString()));
         }
 
         // Now that we have all the
@@ -64,7 +88,7 @@ public class MapUtil
         }
 
         // We have our optimal path
-        System.out.println("Optimal Path is :: " + paths.get(maxEntry.getKey()));
+        return paths.get(maxEntry.getKey());
     }
 
     private void addNodeToPath(MapRoomNode node, ArrayList<MapRoomNode> path)
@@ -80,7 +104,7 @@ public class MapUtil
                 ArrayList<MapRoomNode> tmpPath = new ArrayList<MapRoomNode>();
                 for (int i=0 ; i<path.size() ; i++)
                 {
-                    // add all parent nodes up to this point to then split from
+                    // add all parent mapNodes up to this point to then split from
                     tmpPath.add(path.get(i));
                 }
 
@@ -103,7 +127,15 @@ public class MapUtil
     {
         if ( 15 > edge.dstY )
         {
-            return nodes.get(edge.dstY).get(edge.dstX);
+            if ( !mapNodes.isEmpty() )
+            {
+                return mapNodes.get(edge.dstY).get(edge.dstX);
+            }
+            else
+            {
+                System.out.println("Empty mapNodes list!! Check your passed in value to MapUtil.createOptimalPath()");
+                return null;
+            }
         }
         return null;
     }
