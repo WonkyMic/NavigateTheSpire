@@ -2,10 +2,12 @@ import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import cards.AutoPlayForm;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import relics.AutoPlayRelic;
 
 //When all External Libraries are added from the pom.xml using maven the code can be uncommented.
@@ -17,10 +19,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 @SpireInitializer
-public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, EditRelicsSubscriber, PostCreateIroncladStartingRelicsSubscriber, PostCreateSilentStartingRelicsSubscriber, EditStringsSubscriber {
+public class DevTheSpire implements  OnStartBattleSubscriber, PostBattleSubscriber, EditCardsSubscriber, OnCardUseSubscriber, EditRelicsSubscriber, PostCreateIroncladStartingRelicsSubscriber, PostCreateSilentStartingRelicsSubscriber, EditStringsSubscriber, PostUpdateSubscriber {
 
 
-	public boolean inBattle = false;
+	public boolean inCombat = false;
+	public boolean dontDo = false;
 
 
     public DevTheSpire(){
@@ -71,4 +74,17 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 		BaseMod.loadCustomStrings(RelicStrings.class, relicStrings);
 	}
 
+	@Override
+	public void receivePostUpdate() {
+	}
+
+	@Override
+	public void receiveOnBattleStart(MonsterRoom monsterRoom) {
+		inCombat = true;
+	}
+
+	@Override
+	public void receivePostBattle(AbstractRoom abstractRoom) {
+		inCombat = false;
+	}
 }
