@@ -19,11 +19,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 @SpireInitializer
-public class DevTheSpire implements  OnStartBattleSubscriber, PostBattleSubscriber, EditCardsSubscriber, OnCardUseSubscriber, EditRelicsSubscriber, PostCreateIroncladStartingRelicsSubscriber, PostCreateSilentStartingRelicsSubscriber, EditStringsSubscriber, PostUpdateSubscriber {
+public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, EditRelicsSubscriber, PostCreateIroncladStartingRelicsSubscriber, PostCreateSilentStartingRelicsSubscriber, EditStringsSubscriber {
 
 
 	public boolean inCombat = false;
-	public boolean dontDo = false;
 
 
     public DevTheSpire(){
@@ -74,17 +73,4 @@ public class DevTheSpire implements  OnStartBattleSubscriber, PostBattleSubscrib
 		BaseMod.loadCustomStrings(RelicStrings.class, relicStrings);
 	}
 
-	@Override
-	public void receivePostUpdate() {
-	}
-
-	@Override
-	public void receiveOnBattleStart(MonsterRoom monsterRoom) {
-		inCombat = true;
-	}
-
-	@Override
-	public void receivePostBattle(AbstractRoom abstractRoom) {
-		inCombat = false;
-	}
 }
