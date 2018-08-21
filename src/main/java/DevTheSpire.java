@@ -6,8 +6,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import cards.AutoPlayForm;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.RelicStrings;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import relics.AutoPlayRelic;
 
 //When all External Libraries are added from the pom.xml using maven the code can be uncommented.

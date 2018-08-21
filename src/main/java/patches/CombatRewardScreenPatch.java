@@ -19,6 +19,9 @@ public class CombatRewardScreenPatch {
     public static void Postfix (CombatRewardScreen screen) {
 
         for (RewardItem r : screen.rewards) {
+            if (r.type == RewardItem.RewardType.CARD) {
+                r.hb.clicked = true;
+            }
             if (r.type == RewardItem.RewardType.RELIC) {
                 r.hb.clicked = true;
             }
@@ -29,9 +32,6 @@ public class CombatRewardScreenPatch {
             ) {
                 System.out.println("potion count: " + AbstractDungeon.player.potions.size());
                 System.out.println("potion slots: " + AbstractDungeon.player.potionSlots);
-                r.hb.clicked = true;
-            }
-            if (r.type == RewardItem.RewardType.CARD) {
                 r.hb.clicked = true;
             }
         }
