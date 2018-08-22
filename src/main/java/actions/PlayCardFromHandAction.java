@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+
 public class PlayCardFromHandAction extends com.megacrit.cardcrawl.actions.AbstractGameAction {
 
 
@@ -18,9 +19,9 @@ public class PlayCardFromHandAction extends com.megacrit.cardcrawl.actions.Abstr
 
     public void update() {
 		AbstractPlayer p = AbstractDungeon.player;
-		if (AbstractDungeon.player.hand.group.size() > 0) {
+		if (AbstractDungeon.player.hand.group.size() > 0) { //something to do with hand being empty after the last card is played????
 			int n = 0;
-			while (AbstractDungeon.getCurrRoom().monsters.monsters.get(n).isDead) {
+			while (AbstractDungeon.getCurrRoom().monsters.monsters.get(n).isDead || AbstractDungeon.getCurrRoom().monsters.monsters.get(n).isDying) {
 				n = n + 1;
 			}
 			AbstractMonster m = AbstractDungeon.getCurrRoom().monsters.monsters.get(n);
@@ -29,6 +30,7 @@ public class PlayCardFromHandAction extends com.megacrit.cardcrawl.actions.Abstr
 				q = q + 1;
 			}
 			AbstractCard cardToPlay = AbstractDungeon.player.hand.group.get(q);
+
 			if (q == p.hand.group.size()-1 && !cardToPlay.canUse(p, m)) { //if player can't play any cards, end the turn.
 				AbstractDungeon.actionManager.cardQueue.clear();
 				AbstractDungeon.player.limbo.group.clear();
@@ -36,15 +38,19 @@ public class PlayCardFromHandAction extends com.megacrit.cardcrawl.actions.Abstr
 				AbstractDungeon.overlayMenu.endTurnButton.disable(true);
 			}
 			if (cardToPlay.canUse(p, m)) {
-				cardToPlay.freeToPlayOnce = false;
-				cardToPlay.exhaustOnUseOnce = false;
 				AbstractDungeon.player.limbo.group.add(cardToPlay);
 				AbstractDungeon.player.hand.group.remove(cardToPlay);
 				cardToPlay.applyPowers();
 				AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.utility.QueueCardAction(cardToPlay, m));
-
 			}
-			this.isDone = true;
 		}
+		else
+        {
+            AbstractDungeon.actionManager.cardQueue.clear();
+            AbstractDungeon.player.limbo.group.clear();
+            AbstractDungeon.player.releaseCard();
+            AbstractDungeon.overlayMenu.endTurnButton.disable(true);
+        }
+        this.isDone = true;
 	}
 }
