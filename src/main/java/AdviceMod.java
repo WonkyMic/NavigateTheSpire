@@ -4,18 +4,12 @@ import basemod.interfaces.PostDungeonInitializeSubscriber;
 
 import basemod.interfaces.PostUpdateSubscriber;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.map.MapRoomNode;
-import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
-import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;
-
-import java.lang.reflect.Method;
 
 @SpireInitializer
 public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSubscriber {
 
-    int previousFloor = -1;
+    int previousFloor = 0;
 
     public AdviceMod()
     {
@@ -61,7 +55,6 @@ public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSub
     {
         //seeRelicPool();
         //seeCardPool();
-        previousFloor = -1;
     }
 
     /**
@@ -70,10 +63,9 @@ public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSub
     @Override
     public void receivePostUpdate()
     {
-        if ( previousFloor != AbstractDungeon.floorNum && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP)
+        if ( AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP && AbstractDungeon.getCurrRoom().phase == com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMPLETE)
         {
             invokeNextMapNode();
         }
     }
-
 }

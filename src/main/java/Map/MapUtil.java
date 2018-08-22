@@ -19,32 +19,31 @@ public class MapUtil
 
     public void getNextMapRoomNode(MapRoomNode currentNode)
     {
-        if (AbstractDungeon.getCurrRoom().phase == com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMPLETE) {
-            MapRoomNode nextNode = createOptimalPath(currentNode).get(1);
-
-            // Trigger nextNode
-            AbstractDungeon.nextRoom = nextNode;
-            CardCrawlGame.music.fadeOutTempBGM();
-            AbstractDungeon.pathX.add(Integer.valueOf(nextNode.x));
-            AbstractDungeon.pathY.add(Integer.valueOf(nextNode.y));
-            AbstractDungeon.topLevelEffects.add(new com.megacrit.cardcrawl.vfx.FadeWipeParticle());
-            AbstractDungeon.nextRoomTransitionStart();
-        }
-    }
-
-    private ArrayList<MapRoomNode> createOptimalPath(MapRoomNode currentNode)
-    {
         ArrayList<ArrayList<MapRoomNode>> nodesToIterateOver = new ArrayList<ArrayList<MapRoomNode>>();
-
+        int getNode = 0;
         if ( currentNode.y < 0 )
         {
             nodesToIterateOver.addAll(mapNodes);
         }
         else
         {
+            getNode = 1;
             nodesToIterateOver.add(new ArrayList<MapRoomNode>(Arrays.asList(currentNode)));
         }
 
+        MapRoomNode nextNode = createOptimalPath(nodesToIterateOver).get(getNode);
+
+        // Trigger nextNode
+        AbstractDungeon.nextRoom = nextNode;
+        CardCrawlGame.music.fadeOutTempBGM();
+        AbstractDungeon.pathX.add(Integer.valueOf(nextNode.x));
+        AbstractDungeon.pathY.add(Integer.valueOf(nextNode.y));
+        AbstractDungeon.topLevelEffects.add(new com.megacrit.cardcrawl.vfx.FadeWipeParticle());
+        AbstractDungeon.nextRoomTransitionStart();
+    }
+
+    private ArrayList<MapRoomNode> createOptimalPath(ArrayList<ArrayList<MapRoomNode>> nodesToIterateOver)
+    {
         // Build all possible paths
         for (MapRoomNode node : nodesToIterateOver.get(0)) {
             if (node.hasEdges()) {

@@ -49,6 +49,12 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 	public void receiveCardUsed(AbstractCard arg0) {
 		System.out.println("receiveCardUsed listener new");
 		AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
+
+		//TODO :: remove health logic
+//		if ( AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth )
+//		{
+//			AbstractDungeon.player.currentHealth = AbstractDungeon.player.maxHealth;
+//		}
 	}
 
 
