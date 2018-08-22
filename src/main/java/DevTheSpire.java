@@ -48,6 +48,10 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 	@Override
 	public void receiveCardUsed(AbstractCard arg0) {
 		System.out.println("receiveCardUsed listener new");
+		while (!AbstractDungeon.actionManager.isEmpty() && !AbstractDungeon.player.limbo.group.isEmpty() && AbstractDungeon.actionManager.cardQueue.isEmpty())
+		{
+			System.out.println("waiting");
+		}
 		AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
 	}
 
@@ -60,7 +64,17 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 	@Override
 	public boolean receivePostCreateStartingRelics(ArrayList<String> relics) {
 		// here we simply give the player na'vi in addition to their other starting relics
-		relics.add("Navi");
+		boolean hasNavi = false;
+		for (int i = 0; i < relics.size(); i++)
+		{
+			if(relics.get(i) == "Navi")
+			{
+				hasNavi = true;
+			}
+		}
+		if(!hasNavi) {
+			relics.add("Navi");
+		}
 		return false; //return false to retain normal starting relic, true will replace.
 	}
 
