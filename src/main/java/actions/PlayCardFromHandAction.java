@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import jsonUtil.JsonDump;
 
 
 public class PlayCardFromHandAction extends com.megacrit.cardcrawl.actions.AbstractGameAction {
@@ -18,7 +19,11 @@ public class PlayCardFromHandAction extends com.megacrit.cardcrawl.actions.Abstr
     }
 
     public void update() {
-		AbstractPlayer p = AbstractDungeon.player;
+
+    	AbstractPlayer p = AbstractDungeon.player;
+    	JsonDump jsonDump = new JsonDump();
+    	jsonDump.createJson();
+
 		if (AbstractDungeon.player.hand.group.size() > 0) { //something to do with hand being empty after the last card is played????
 			int n = 0;
 			while (AbstractDungeon.getCurrRoom().monsters.monsters.get(n).isDead || AbstractDungeon.getCurrRoom().monsters.monsters.get(n).isDying) {
@@ -42,6 +47,7 @@ public class PlayCardFromHandAction extends com.megacrit.cardcrawl.actions.Abstr
 				AbstractDungeon.player.hand.group.remove(cardToPlay);
 				cardToPlay.applyPowers();
 				AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.utility.QueueCardAction(cardToPlay, m));
+				AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.utility.WaitAction(3f));
 			}
 		}
 		else
