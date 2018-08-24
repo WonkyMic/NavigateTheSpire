@@ -5,12 +5,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
-import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;
 import com.megacrit.cardcrawl.ui.buttons.GridSelectConfirmButton;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 @SpirePatch(
         cls="com.megacrit.cardcrawl.screens.select.GridCardSelectScreen",

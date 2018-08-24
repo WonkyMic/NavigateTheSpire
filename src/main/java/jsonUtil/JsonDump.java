@@ -27,6 +27,7 @@ public class JsonDump {
         //System.out.println(gson.toJson(jsonEnemyArrayList));
 
         try {
+            //TODO: change the file path??
             Writer writer = new FileWriter("C:\\Users\\Hafez\\IdeaProjects\\NavigateTheSpire\\json\\jsonDump.json");
             writer.write(gson.toJson(dataDump));
             writer.close();

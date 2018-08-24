@@ -1,9 +1,11 @@
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import cards.AutoPlayForm;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import relics.AutoPlayRelic;
@@ -17,7 +19,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 @SpireInitializer
-public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, EditRelicsSubscriber, PostCreateIroncladStartingRelicsSubscriber, PostCreateSilentStartingRelicsSubscriber, EditStringsSubscriber {
+public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, EditRelicsSubscriber, PostCreateStartingRelicsSubscriber, EditStringsSubscriber {
 
 
 	public boolean inCombat = false;
@@ -47,12 +49,9 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 
 	@Override
 	public void receiveCardUsed(AbstractCard arg0) {
-		System.out.println("receiveCardUsed listener new");
-		while (!AbstractDungeon.actionManager.isEmpty() && !AbstractDungeon.player.limbo.group.isEmpty() && AbstractDungeon.actionManager.cardQueue.isEmpty())
-		{
-			System.out.println("waiting");
-		}
-		AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
+		//System.out.println("receiveCardUsed listener new");
+		//System.out.println("cards in queue: " + AbstractDungeon.actionManager.cardQueue.get(0).card.name);
+		//AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
 
 		//TODO :: remove health logic
 //		if ( AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth )
@@ -68,7 +67,7 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 	}
 
 	@Override
-	public boolean receivePostCreateStartingRelics(ArrayList<String> relics) {
+	public void receivePostCreateStartingRelics(AbstractPlayer.PlayerClass chosenClass, ArrayList<String> relics) {
 		// here we simply give the player na'vi in addition to their other starting relics
 		boolean hasNavi = false;
 		for (int i = 0; i < relics.size(); i++)
@@ -81,7 +80,6 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 		if(!hasNavi) {
 			relics.add("Navi");
 		}
-		return false; //return false to retain normal starting relic, true will replace.
 	}
 
 	@Override
