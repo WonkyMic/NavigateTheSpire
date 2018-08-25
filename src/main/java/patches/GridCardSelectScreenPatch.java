@@ -1,50 +1,48 @@
 package patches;
 
+import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import com.megacrit.cardcrawl.ui.buttons.GridSelectConfirmButton;
 
 import java.lang.reflect.Field;
 
 @SpirePatch(
-        cls="com.megacrit.cardcrawl.screens.select.GridCardSelectScreen",
-        method="open",
-        paramtypes={
-                "com.megacrit.cardcrawl.cards.CardGroup",
-                "int",
-                "java.lang.String",
-                "boolean",
-                "boolean",
-                "boolean",
-                "boolean"
-        }
+        clz=GridCardSelectScreen.class,
+        method="update",
+        paramtypes={        }
 )
 public class GridCardSelectScreenPatch {
-    public static void Postfix (GridCardSelectScreen screen, CardGroup group, int numCards, String tipMsg, boolean forUpgrade, boolean forTransform, boolean canCancel, boolean forPurge)
+    @SpireInsertPatch(
+            rloc=45
+    )
+    public static void Insert (GridCardSelectScreen screen)
     {
-        if (canCancel)
-        {
-            AbstractDungeon.overlayMenu.cancelButton.hb.clicked = true;
-        }
-        else {
+        //send canCancel to Python instance?
             Class<?> c = screen.getClass();
+        try {
+            Field f1 = c.getDeclaredField("numCards");
+            f1.setAccessible(true);
+            int numCards = (int)f1.get(screen);
+            Field f2 = c.getDeclaredField("targetGroup");
+            f2.setAccessible(true);
+            CardGroup group = (CardGroup)f2.get(screen);
             for (int i = 0; i < numCards; i++) {
-
-                try {
                     Field f = c.getDeclaredField("hoveredCard");
                     f.setAccessible(true);
-                    f.set(screen, group.group.get(0));
                     AbstractCard card = (AbstractCard)f.get(screen);
-                    System.out.println("card name to remove: " + card.name);
+                    card = group.group.get(0);
+                    card.hb.hovered = true;
                     card.hb.clicked = true;
-                    screen.update();
-                } catch (IllegalAccessException | NoSuchFieldException e) {
-                    e.printStackTrace();
+                    f.set(screen, group.group.get(0));
+                    System.out.println("card name to remove: " + card.name);
                 }
             }
+        catch (IllegalAccessException | NoSuchFieldException e) {
+            e.printStackTrace();
+        }
             try {
                 Field f2 = c.getDeclaredField("confirmScreenUp");
                 f2.setAccessible(true);
@@ -60,6 +58,5 @@ public class GridCardSelectScreenPatch {
             } catch (IllegalAccessException | NoSuchFieldException e) {
                 e.printStackTrace();
             }
-        }
     }
 }

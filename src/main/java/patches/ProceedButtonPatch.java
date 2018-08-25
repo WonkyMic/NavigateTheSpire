@@ -18,6 +18,15 @@ import java.util.ArrayList;
 public class ProceedButtonPatch {
     public static void Postfix (ProceedButton button) {
         //TODO: check for room complete?
+        Class<?> c = button.getClass();
+        try {
+            Field f = c.getDeclaredField("label");
+            f.setAccessible(true);
+            String s = (String) f.get(button);
+            System.out.println("label on proceed button: " + s);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            e.printStackTrace();
+        }
         /*
         if(AbstractDungeon.getCurrRoom().phase == com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMPLETE) {
             Class<?> c = button.getClass();
