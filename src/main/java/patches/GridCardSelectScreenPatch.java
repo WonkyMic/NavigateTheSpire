@@ -43,20 +43,5 @@ public class GridCardSelectScreenPatch {
         catch (IllegalAccessException | NoSuchFieldException e) {
             e.printStackTrace();
         }
-            try {
-                Field f2 = c.getDeclaredField("confirmScreenUp");
-                f2.setAccessible(true);
-                boolean confirmScreenUp = (boolean) f2.get(screen);
-                System.out.println("confirmScreenUp = " + confirmScreenUp);
-                if(confirmScreenUp) {
-                    Field f3 = c.getDeclaredField("confirmButton");
-                    f3.setAccessible(true);
-                    GridSelectConfirmButton button = (GridSelectConfirmButton) f3.get(screen);
-                    button.hb.clicked = true;
-                }
-            //f3.set(screen, true);
-            } catch (IllegalAccessException | NoSuchFieldException e) {
-                e.printStackTrace();
-            }
     }
 }

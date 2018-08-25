@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
         method="removeDialogOption",
         paramtypez = {int.class}
 )
-public class RoomEventDialog2Patch {
+public class RoomEventDialogPatch2 {
     public static void Postfix (RoomEventDialog event, int removedOption) {
         for (LargeDialogOptionButton option : AbstractDungeon.getCurrRoom().event.roomEventText.optionList) {
             System.out.println("RoomEventDialog: " + option.msg.toString());
