@@ -5,6 +5,7 @@ import basemod.interfaces.PostDungeonInitializeSubscriber;
 import basemod.interfaces.PostUpdateSubscriber;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.rooms.TreasureRoomBoss;
 
 @SpireInitializer
 public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSubscriber {
@@ -60,10 +61,12 @@ public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSub
     /**
      * This method is invoked constantly, careful when adding to this.
      */
+
+    //TODO: Change this to a patch on opening map?
     @Override
     public void receivePostUpdate()
     {
-        if ( AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP && AbstractDungeon.getCurrRoom().phase == com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMPLETE)
+        if ( AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP && AbstractDungeon.getCurrRoom().phase == com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMPLETE && !(AbstractDungeon.getCurrRoom() instanceof TreasureRoomBoss))
         {
             invokeNextMapNode();
         }

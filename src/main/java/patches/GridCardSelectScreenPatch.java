@@ -37,16 +37,10 @@ public class GridCardSelectScreenPatch {
                     Field f = c.getDeclaredField("hoveredCard");
                     f.setAccessible(true);
                     f.set(screen, group.group.get(0));
-                    //screen.update();
                     AbstractCard card = (AbstractCard)f.get(screen);
-                    //card = group.group.get(0);
-                    //group.group.get(0).hover();
                     System.out.println("card name to remove: " + card.name);
                     card.hb.clicked = true;
                     screen.update();
-                    //Field f2 = c.getDeclaredField("hoveredCard.hb.clicked");
-                    //f2.setAccessible(true);
-                    //f2.set(screen, true);
                 } catch (IllegalAccessException | NoSuchFieldException e) {
                     e.printStackTrace();
                 }
@@ -57,7 +51,6 @@ public class GridCardSelectScreenPatch {
                 boolean confirmScreenUp = (boolean) f2.get(screen);
                 System.out.println("confirmScreenUp = " + confirmScreenUp);
                 if(confirmScreenUp) {
-                    System.out.println("ready to confirm");
                     Field f3 = c.getDeclaredField("confirmButton");
                     f3.setAccessible(true);
                     GridSelectConfirmButton button = (GridSelectConfirmButton) f3.get(screen);

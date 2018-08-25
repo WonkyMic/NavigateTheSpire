@@ -26,7 +26,7 @@ public class PlayCardFromHandAction extends com.megacrit.cardcrawl.actions.Abstr
 
 		if (AbstractDungeon.player.hand.group.size() > 0) { //something to do with hand being empty after the last card is played????
 			int n = 0;
-			while (AbstractDungeon.getCurrRoom().monsters.monsters.get(n).isDead || AbstractDungeon.getCurrRoom().monsters.monsters.get(n).isDying) {
+			while (n<AbstractDungeon.getCurrRoom().monsters.monsters.size()-1 && (AbstractDungeon.getCurrRoom().monsters.monsters.get(n).isDead || AbstractDungeon.getCurrRoom().monsters.monsters.get(n).isDying)) {
 				n = n + 1;
 			}
 			AbstractMonster m = AbstractDungeon.getCurrRoom().monsters.monsters.get(n);

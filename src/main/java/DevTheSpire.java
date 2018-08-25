@@ -54,10 +54,10 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 		//AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
 
 		//TODO :: remove health logic
-//		if ( AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth )
-//		{
-//			AbstractDungeon.player.currentHealth = AbstractDungeon.player.maxHealth;
-//		}
+		if ( AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth )
+		{
+			AbstractDungeon.player.currentHealth = AbstractDungeon.player.maxHealth;
+		}
 	}
 
 

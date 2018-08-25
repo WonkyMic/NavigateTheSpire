@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +20,7 @@ public class MapUtil
 
     public void getNextMapRoomNode(MapRoomNode currentNode)
     {
+        MapRoomNode nextNode;
         ArrayList<ArrayList<MapRoomNode>> nodesToIterateOver = new ArrayList<ArrayList<MapRoomNode>>();
         int getNode = 0;
         if ( currentNode.y < 0 )
@@ -31,8 +33,15 @@ public class MapUtil
             nodesToIterateOver.add(new ArrayList<MapRoomNode>(Arrays.asList(currentNode)));
         }
 
-        MapRoomNode nextNode = createOptimalPath(nodesToIterateOver).get(getNode);
-
+        if ( currentNode.y == 14 )
+        {
+            System.out.println(mapNodes.toString());
+            nextNode = new MapRoomNode(-1, 15);
+            nextNode.room = new MonsterRoomBoss();
+        }
+        else {
+            nextNode = createOptimalPath(nodesToIterateOver).get(getNode);
+        }
         // Trigger nextNode
         AbstractDungeon.nextRoom = nextNode;
         CardCrawlGame.music.fadeOutTempBGM();

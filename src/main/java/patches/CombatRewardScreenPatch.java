@@ -42,5 +42,10 @@ public class CombatRewardScreenPatch {
                 }
             }
         }
+
+        if(AbstractDungeon.getCurrRoom().getMapSymbol() != "B")
+        {
+            //AbstractDungeon.screen = AbstractDungeon.CurrentScreen.MAP;
+        }
     }
 }

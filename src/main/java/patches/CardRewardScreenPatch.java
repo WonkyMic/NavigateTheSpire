@@ -60,8 +60,6 @@ public class CardRewardScreenPatch {
                 AbstractDungeon.closeCurrentScreen();
                 draftCount = 0;
             }
-            //trying to switch screen to map to force next room after we're done picking rewards.
-            AbstractDungeon.screen = AbstractDungeon.CurrentScreen.MAP;
         }
     }
 }
