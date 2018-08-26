@@ -29,13 +29,8 @@ public class GremlinMatchGamePatch {
             f.setAccessible(true);
             cards = (CardGroup)f.get(game);
             for(int i = 0; i < cards.size(); ++i) {
-                System.out.println("gremlin match cards: " + (AbstractCard) cards.group.get(i));
+                //System.out.println("gremlin match cards: " + (AbstractCard) cards.group.get(i));
             }
-            //this doesn't quite work yet. I think I need another match game patch in updateMatchGameLogic()
-            cards.group.get(0).hb.hovered = true;
-            cards.group.get(1).hb.hovered = true;
-            cards.group.get(0).hb.clicked = true;
-            cards.group.get(1).hb.clicked = true;
         }
         catch (IllegalAccessException | NoSuchFieldException e) {
             e.printStackTrace();
