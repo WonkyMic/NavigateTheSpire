@@ -86,7 +86,6 @@ public class ShopScreenPatch {
 
 
         //handle opening card removal
-        System.out.println("trying to open card removal");
         if (screen.purgeAvailable && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.SHOP && openPurge)
         {
             if (AbstractDungeon.player.gold >= screen.actualPurgeCost) {
