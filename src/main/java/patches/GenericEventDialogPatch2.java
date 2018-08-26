@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
 public class GenericEventDialogPatch2 {
     public static void Postfix (GenericEventDialog event, int removedOption) {
         for (LargeDialogOptionButton option : AbstractDungeon.getCurrRoom().event.imageEventText.optionList) {
-            System.out.println("GenericEventDialog: " + option.msg.toString());
+            System.out.println("GenericEventDialog2: " + option.msg.toString());
         }
 
         //AbstractDungeon.getCurrRoom().event.imageEventText.optionList.get(0).hb.clicked = true;

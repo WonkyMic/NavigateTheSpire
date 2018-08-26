@@ -19,7 +19,7 @@ public class AbstractEventPatch {
         }
 
         for (LargeDialogOptionButton option : AbstractDungeon.getCurrRoom().event.imageEventText.optionList) {
-            System.out.println("GenericEventDialog: " + option.msg.toString());
+            //System.out.println("imageEventText: " + option.msg.toString());
         }
 
         if(AbstractDungeon.getCurrRoom().event.roomEventText.optionList.size() > 0) {
