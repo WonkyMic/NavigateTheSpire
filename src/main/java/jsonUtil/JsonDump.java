@@ -8,7 +8,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-import jsonUtil.DataDump;
+import javax.ws.rs.ProcessingException;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+//import java
 
 public class JsonDump {
 
@@ -24,16 +31,30 @@ public class JsonDump {
                 .setPrettyPrinting()
                 .create();
 
-        //System.out.println(gson.toJson(jsonEnemyArrayList));
+        //TODO :: this should be the end of the method (with return)
+        //return gson.toJson(dataDump)
 
-        try {
-            //TODO: change the file path??
-            Writer writer = new FileWriter("C:\\Users\\Hafez\\IdeaProjects\\NavigateTheSpire\\json\\jsonDump.json");
-            writer.write(gson.toJson(dataDump));
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        //TODO :: move to another method or MachineLearningClient class
+        String URL = "http://127.0.0.1:5000/navi/test-endpoint";
+        Client client = ClientBuilder.newClient();
+        try
+        {
+            Response resp = client.target(URL)
+                    .request(MediaType.APPLICATION_JSON)
+                    .post(Entity.entity(gson.toJson(dataDump), MediaType.APPLICATION_JSON));
+
+            if ( 200 == resp.getStatus() )
+            {
+                System.out.println("JsonDump :: client call response :: " + resp.readEntity(String.class));
+            }
+            else
+            {
+                System.out.println("ERROR :: response from :: " + URL + " :: was not OK(200), please check that service is running properly.");
+            }
         }
-
+        catch ( ProcessingException ex )
+        {
+            ex.printStackTrace();
+        }
     }
 }
