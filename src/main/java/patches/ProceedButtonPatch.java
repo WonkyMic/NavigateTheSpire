@@ -1,14 +1,9 @@
 package patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.Hitbox;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.screens.select.BossRelicSelectScreen;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 
 
 @SpirePatch(

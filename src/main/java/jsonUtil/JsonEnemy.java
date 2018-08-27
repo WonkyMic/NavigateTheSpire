@@ -1,8 +1,5 @@
 package jsonUtil;
 
-import com.megacrit.cardcrawl.monsters.AbstractMonster.Intent;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-
 import java.util.ArrayList;
 
 public class JsonEnemy {

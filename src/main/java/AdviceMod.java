@@ -1,7 +1,6 @@
 import Map.MapUtil;
 import basemod.BaseMod;
 import basemod.interfaces.PostDungeonInitializeSubscriber;
-
 import basemod.interfaces.PostUpdateSubscriber;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

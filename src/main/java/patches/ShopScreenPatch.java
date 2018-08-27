@@ -4,16 +4,12 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractEvent;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.shop.StorePotion;
 import com.megacrit.cardcrawl.shop.StoreRelic;
-import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
+import jsonUtil.StateDataDump;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 
@@ -53,6 +49,8 @@ public class ShopScreenPatch {
         }
         for(StoreRelic relic : relics) {
             System.out.println("Store relic: " + relic.relic.name + " costs " + relic.price);
+            //add to list of relics seen.
+            StateDataDump.relicsSeen.add(relic.relic.name);
         }
         for(StorePotion potion : potions) {
             System.out.println("Store potion: " + potion.potion.name + " costs " + potion.price);

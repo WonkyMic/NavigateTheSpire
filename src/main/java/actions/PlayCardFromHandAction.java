@@ -24,7 +24,7 @@ public class PlayCardFromHandAction extends com.megacrit.cardcrawl.actions.Abstr
 
     	AbstractPlayer p = AbstractDungeon.player;
     	JsonDump jsonDump = new JsonDump();
-    	jsonDump.createJson();
+    	jsonDump.createCombatJson();
 
 
 		if (AbstractDungeon.player.hand.group.size() > 0) { //something to do with hand being empty after the last card is played????

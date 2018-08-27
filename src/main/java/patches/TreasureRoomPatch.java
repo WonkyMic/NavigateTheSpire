@@ -1,11 +1,7 @@
 package patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.rooms.TreasureRoom;
-import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
-
-import java.lang.reflect.Field;
 
 
 @SpirePatch(

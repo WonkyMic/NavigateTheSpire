@@ -1,28 +1,23 @@
+import basemod.BaseMod;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
-import com.badlogic.gdx.Gdx;
-import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-
 import cards.AutoPlayForm;
+import com.badlogic.gdx.Gdx;
+import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.RelicStrings;
+import jsonUtil.StateDataDump;
 import relics.AutoPlayRelic;
-
-//When all External Libraries are added from the pom.xml using maven the code can be uncommented.
-
-import basemod.BaseMod;
-import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+//When all External Libraries are added from the pom.xml using maven the code can be uncommented.
+
 @SpireInitializer
-public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, EditRelicsSubscriber, PostCreateStartingRelicsSubscriber, EditStringsSubscriber {
-
-
-	public boolean inCombat = false;
+public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, EditRelicsSubscriber, PostCreateStartingRelicsSubscriber, EditStringsSubscriber, PostDungeonInitializeSubscriber {
 
 
     public DevTheSpire(){
@@ -89,4 +84,8 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 		BaseMod.loadCustomStrings(RelicStrings.class, relicStrings);
 	}
 
+	@Override
+	public void receivePostDungeonInitialize() {
+		StateDataDump.relicsSeen = new ArrayList<String>();
+	}
 }
