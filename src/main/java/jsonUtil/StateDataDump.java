@@ -4,8 +4,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class StateDataDump extends AbstractDataDump {
+
+    //game information
+    public static UUID gameID;
+    public static UUID currentStateID;
+    int floorNum;
+    int actNum;
 
     //player information
     String chosenClass;
@@ -18,6 +25,10 @@ public class StateDataDump extends AbstractDataDump {
     public static ArrayList<String> relicsSeen; //TODO: get list of all relics seen
 
     public void updateStateDataForJson() {
+
+        currentStateID = UUID.randomUUID();
+        floorNum = AbstractDungeon.floorNum;
+        actNum = AbstractDungeon.actNum;
 
         AbstractPlayer p = AbstractDungeon.player;
 
@@ -42,8 +53,6 @@ public class StateDataDump extends AbstractDataDump {
                 relicsOwned.add(p.relics.get(i).name);
             }
         }
-
-        //TODO: get list of all relics seen
         }
     }
 

@@ -13,6 +13,7 @@ import relics.AutoPlayRelic;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.UUID;
 
 //When all External Libraries are added from the pom.xml using maven the code can be uncommented.
 
@@ -23,7 +24,6 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
     public DevTheSpire(){
         //Use this for when you subscribe to any hooks offered by BaseMod.
         BaseMod.subscribe(this);
-		//BaseMod.subscribeToPostCreateStartingRelics(this);
     }
 
     //Used by @SpireInitializer
@@ -32,7 +32,6 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
         //This creates an instance of our classes and gets our code going after BaseMod and ModTheSpire initialize.
         new DevTheSpire();
 
-        //Look at the BaseMod wiki for getting started. (Skip the decompiling part. It's not needed right now)
 
     }
 
@@ -44,9 +43,6 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 
 	@Override
 	public void receiveCardUsed(AbstractCard arg0) {
-		//System.out.println("receiveCardUsed listener new");
-		//System.out.println("cards in queue: " + AbstractDungeon.actionManager.cardQueue.get(0).card.name);
-		//AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
 
 		//TODO :: remove health logic
 		if ( AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth )
@@ -86,6 +82,8 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 
 	@Override
 	public void receivePostDungeonInitialize() {
-		StateDataDump.relicsSeen = new ArrayList<String>();
+    	StateDataDump.relicsSeen = new ArrayList<String>();
+		StateDataDump.gameID = UUID.randomUUID();
 	}
+
 }

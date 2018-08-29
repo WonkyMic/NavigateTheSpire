@@ -1,6 +1,7 @@
 package patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.events.shrines.GremlinMatchGame;
 
@@ -24,7 +25,7 @@ public class GremlinMatchGamePatch {
             f.setAccessible(true);
             cards = (CardGroup)f.get(game);
             for(int i = 0; i < cards.size(); ++i) {
-                //System.out.println("gremlin match cards: " + (AbstractCard) cards.group.get(i));
+                System.out.println("gremlin match cards: " + cards.group.get(i).name);
             }
         }
         catch (IllegalAccessException | NoSuchFieldException e) {

@@ -8,8 +8,12 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class CombatDataDump extends AbstractDataDump{
+
+    UUID currentStateID;
+    UUID combatStateID;
 
     //player information
     int currentBlock;
@@ -36,6 +40,9 @@ public class CombatDataDump extends AbstractDataDump{
     transient ArrayList<String> enemyPowers = new ArrayList<String>();
 
     public void updateCombatDataForJson() {
+
+        currentStateID = StateDataDump.currentStateID;
+        combatStateID = UUID.randomUUID();
 
         AbstractPlayer p = AbstractDungeon.player;
 
@@ -79,9 +86,6 @@ public class CombatDataDump extends AbstractDataDump{
             }
             orbSlots = p.maxOrbs;
         }
-
-
-
 
         //get monster information
 

@@ -4,19 +4,22 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
+import jsonUtil.JsonDump;
+
+import static jsonUtil.EventDataDump.previousImageEventText;
+import static jsonUtil.EventDataDump.previousRoomEventText;
 
 
 @SpirePatch(
         clz= GenericEventDialog.class,
         method="show",
-        paramtypes = {}
+        paramtypez = {String.class, String.class}
 )
 public class GenericEventDialogPatch {
-    public static void Postfix () {
-        for (LargeDialogOptionButton option : AbstractDungeon.getCurrRoom().event.imageEventText.optionList) {
-            System.out.println("GenericEventDialog: " + option.msg.toString());
-        }
+    public static void Postfix (GenericEventDialog screen, String s, String s1) {
 
-        //AbstractDungeon.getCurrRoom().event.imageEventText.optionList.get(0).hb.clicked = true;
+        JsonDump jsonDump = new JsonDump();
+        jsonDump.createEventJson();
+
     }
 }

@@ -14,14 +14,16 @@ import jsonUtil.StateDataDump;
         }
 )
 public class CombatRewardScreenPatch {
+    public static boolean rewardsFinished = false;
     public static void Postfix (CombatRewardScreen screen) {
+        rewardsFinished = false;
         for (RewardItem r : screen.rewards) {
             if (r.type == RewardItem.RewardType.CARD) {
                 r.hb.clicked = true;
             }
             if (r.type == RewardItem.RewardType.RELIC) {
+                //StateDataDump.relicsSeen.add(r.relic.name);
                 r.hb.clicked = true;
-                StateDataDump.relicsSeen.add(r.relic.name);
             }
             if (r.type == RewardItem.RewardType.GOLD || r.type == RewardItem.RewardType.STOLEN_GOLD) {
                 r.hb.clicked = true;
@@ -42,6 +44,8 @@ public class CombatRewardScreenPatch {
                 }
             }
         }
+
+        rewardsFinished = true;
 
         if(AbstractDungeon.getCurrRoom().getMapSymbol() != "B")
         {

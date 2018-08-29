@@ -1,32 +1,34 @@
 package patches;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
+import com.megacrit.cardcrawl.events.GenericEventDialog;
+import com.megacrit.cardcrawl.events.RoomEventDialog;
 import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
+import jsonUtil.JsonDump;
+
+import static jsonUtil.EventDataDump.previousImageEventText;
+import static jsonUtil.EventDataDump.previousRoomEventText;
 
 
 @SpirePatch(
         clz= AbstractEvent.class,
-        method="updateDialog",
-        paramtypes = {}
+        method="renderText",
+        paramtypez = {SpriteBatch.class}
 )
 public class AbstractEventPatch {
-    public static void Postfix (AbstractEvent event) {
-        for (LargeDialogOptionButton option : AbstractDungeon.getCurrRoom().event.roomEventText.optionList) {
-            System.out.println("RoomEventDialog: " + option.msg.toString());
+
+    public static void Postfix (AbstractEvent event, SpriteBatch sb) {
+
+        if (event.roomEventText != previousRoomEventText) {
+            for (LargeDialogOptionButton option : AbstractDungeon.getCurrRoom().event.roomEventText.optionList) {
+                previousRoomEventText = event.roomEventText;
+                JsonDump jsonDump = new JsonDump();
+                jsonDump.createEventJson();
+            }
         }
 
-        for (LargeDialogOptionButton option : AbstractDungeon.getCurrRoom().event.imageEventText.optionList) {
-            //System.out.println("imageEventText: " + option.msg.toString());
-        }
-
-        if(AbstractDungeon.getCurrRoom().event.roomEventText.optionList.size() > 0) {
-            AbstractDungeon.getCurrRoom().event.roomEventText.optionList.get(0).hb.clicked = true;
-        }
-
-        if(AbstractDungeon.getCurrRoom().event.imageEventText.optionList.size() > 0) {
-            AbstractDungeon.getCurrRoom().event.imageEventText.optionList.get(0).hb.clicked = true;
-        }
     }
 }

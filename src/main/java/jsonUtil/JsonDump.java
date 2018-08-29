@@ -14,9 +14,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-//import java
-
-//TODO: make AbstractDataDump class?
 public class JsonDump {
 
     public void createStateJson()
@@ -34,6 +31,17 @@ public class JsonDump {
 
         CombatDataDump data = new CombatDataDump();
         data.updateCombatDataForJson();
+
+        createJson(data);
+
+    }
+
+    public void createEventJson()
+    {
+        createStateJson();
+
+        EventDataDump data = new EventDataDump();
+        data.updateEventDataForJson();
 
         createJson(data);
 

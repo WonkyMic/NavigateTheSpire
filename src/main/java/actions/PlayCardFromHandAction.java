@@ -26,6 +26,8 @@ public class PlayCardFromHandAction extends com.megacrit.cardcrawl.actions.Abstr
     	JsonDump jsonDump = new JsonDump();
     	jsonDump.createCombatJson();
 
+    	//TODO: Request python for card to play and enemy to target OR potion to use
+
 
 		if (AbstractDungeon.player.hand.group.size() > 0) { //something to do with hand being empty after the last card is played????
 			int n = 0;
