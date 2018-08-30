@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class EventDataDump extends AbstractDataDump{
 
-    UUID currentStateID;
+    int currentStateID;
     UUID eventStateID;
     String eventName;
     ArrayList<String> roomEventOptions = new ArrayList<String>();

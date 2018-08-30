@@ -20,3 +20,5 @@ public class BeyondEventPatches {
         jsonDump.createEventJson();
     }
 }
+
+//TODO: if event is SpireHeart then game is won and reward should be very high

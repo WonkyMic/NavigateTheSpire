@@ -18,7 +18,7 @@ import java.util.UUID;
 //When all External Libraries are added from the pom.xml using maven the code can be uncommented.
 
 @SpireInitializer
-public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, EditRelicsSubscriber, PostCreateStartingRelicsSubscriber, EditStringsSubscriber, PostDungeonInitializeSubscriber {
+public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, EditRelicsSubscriber, PostCreateStartingRelicsSubscriber, EditStringsSubscriber, PostDungeonInitializeSubscriber, PostDeathSubscriber {
 
 
     public DevTheSpire(){
@@ -84,6 +84,11 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 	public void receivePostDungeonInitialize() {
     	StateDataDump.relicsSeen = new ArrayList<String>();
 		StateDataDump.gameID = UUID.randomUUID();
+		StateDataDump.currentStateID = 0;
 	}
 
+	@Override
+	public void receivePostDeath() {
+		//TODO: player has died, reset RL environment
+	}
 }

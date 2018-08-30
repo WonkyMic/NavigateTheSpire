@@ -42,5 +42,10 @@ public class GridCardSelectScreenPatch {
         catch (IllegalAccessException | NoSuchFieldException e) {
             e.printStackTrace();
         }
+        /* TODO: pass these to RL
+        screen.forPurge;
+        screen.forUpgrade;
+        screen.forTransform;
+        */
     }
 }

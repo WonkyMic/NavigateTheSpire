@@ -1,5 +1,6 @@
 package jsonUtil;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,23 +13,24 @@ import java.util.UUID;
 
 public class CombatDataDump extends AbstractDataDump{
 
-    UUID currentStateID;
+    int currentStateID;
     UUID combatStateID;
 
     //player information
     int currentBlock;
-    ArrayList<String> currentPowers = new ArrayList<String>();
+    ArrayList<JsonPower> currentPowers = new ArrayList<JsonPower>();
     int currentEnergy;
     int maxEnergy;
-    ArrayList<String> hand = new ArrayList<String>();
-    ArrayList<String> exhaustPile = new ArrayList<String>();
-    ArrayList<String> discardPile = new ArrayList<String>();
-    ArrayList<String> drawPile = new ArrayList<String>();
+    ArrayList<JsonCard> jsonCardArrayListHand = new ArrayList<JsonCard>();
+    ArrayList<JsonCard> jsonCardArrayListExhaustPile = new ArrayList<JsonCard>();
+    ArrayList<JsonCard> jsonCardArrayListDiscardPile = new ArrayList<JsonCard>();
+    ArrayList<JsonCard> jsonCardArrayListDrawPile = new ArrayList<JsonCard>();
     ArrayList<String> currentOrbs = new ArrayList<String>();
     int orbSlots;
 
     //monster information
     ArrayList<JsonEnemy> jsonEnemyArrayList = new ArrayList<JsonEnemy>();
+    transient String enemyID;
     transient int enemyCurrentHealth;
     transient int enemyMaxHealth;
     transient int enemyCurrentBlock;
@@ -37,7 +39,7 @@ public class CombatDataDump extends AbstractDataDump{
     transient int enemyIntentBaseDamage = 0;
     transient int enemyIntentMultiAmount = 0;
     transient boolean enemyIntentIsMultiAttack = false;
-    transient ArrayList<String> enemyPowers = new ArrayList<String>();
+    transient ArrayList<JsonPower> enemyPowers = new ArrayList<JsonPower>();
 
     public void updateCombatDataForJson() {
 
@@ -48,31 +50,56 @@ public class CombatDataDump extends AbstractDataDump{
 
         //get player information
         currentBlock = p.currentBlock;
+        while (currentPowers.size() < 30)
+        {
+            currentPowers.add(new JsonPower());
+        }
         if (p.powers != null) {
             for (int i = 0; i < p.powers.size(); i++) {
-                currentPowers.add(p.powers.get(i).name);
+
+                currentPowers.set(i, new JsonPower(p.powers.get(i).ID, p.powers.get(i).amount));
             }
         }
         currentEnergy = EnergyPanel.getCurrentEnergy();
         maxEnergy = p.energy.energy;
+        while (jsonCardArrayListHand.size() < 10)
+        {
+            jsonCardArrayListHand.add(new JsonCard());
+        }
         if (p.hand.group != null) {
             for (int i = 0; i < p.hand.group.size(); i++) {
-                hand.add(p.hand.group.get(i).name);
+                AbstractCard c = p.hand.group.get(i);
+                jsonCardArrayListHand.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, c.upgraded, c.exhaust));
             }
+        }
+        while (jsonCardArrayListExhaustPile.size() < 100)
+        {
+            jsonCardArrayListExhaustPile.add(new JsonCard());
         }
         if (p.exhaustPile.group != null) {
             for (int i = 0; i < p.exhaustPile.group.size(); i++) {
-                exhaustPile.add(p.exhaustPile.group.get(i).name);
+                AbstractCard c = p.exhaustPile.group.get(i);
+                jsonCardArrayListExhaustPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, c.upgraded, c.exhaust));
             }
+        }
+        while (jsonCardArrayListDiscardPile.size() < 100)
+        {
+            jsonCardArrayListDiscardPile.add(new JsonCard());
         }
         if (p.discardPile.group != null) {
             for (int i = 0; i < p.discardPile.group.size(); i++) {
-                discardPile.add(p.discardPile.group.get(i).name);
+                AbstractCard c = p.discardPile.group.get(i);
+                jsonCardArrayListDiscardPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, c.upgraded, c.exhaust));
             }
+        }
+        while (jsonCardArrayListDrawPile.size() < 200)
+        {
+            jsonCardArrayListDrawPile.add(new JsonCard());
         }
         if (p.drawPile.group != null) {
             for (int i = 0; i < p.drawPile.group.size(); i++) {
-                drawPile.add(p.drawPile.group.get(i).name);
+                AbstractCard c = p.drawPile.group.get(i);
+                jsonCardArrayListDrawPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, c.upgraded, c.exhaust));
             }
         }
         //TODO: get list of all relics seen
@@ -81,7 +108,7 @@ public class CombatDataDump extends AbstractDataDump{
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
             if (p.orbs != null) {
                 for (int i = 0; i < p.orbs.size(); i++) {
-                    currentOrbs.add(p.orbs.get(i).name);
+                    currentOrbs.add(p.orbs.get(i).ID);
                 }
             }
             orbSlots = p.maxOrbs;
@@ -89,13 +116,21 @@ public class CombatDataDump extends AbstractDataDump{
 
         //get monster information
 
+        while (jsonEnemyArrayList.size() < 5)
+        {
+            jsonEnemyArrayList.add(new JsonEnemy());
+        }
+
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
             ArrayList<AbstractMonster> enemies = AbstractDungeon.getCurrRoom().monsters.monsters;
-            for (AbstractMonster enemy : enemies) {
+            for (int i = 0; i < enemies.size(); i++) {
+                AbstractMonster enemy = enemies.get(i);
+                enemyID = enemy.id;
                 enemyCurrentHealth = enemy.currentHealth;
                 enemyMaxHealth = enemy.maxHealth;
                 enemyCurrentBlock = enemy.currentBlock;
                 enemyIntent = enemy.intent.toString();
+                enemyPowers = new ArrayList<JsonPower>();
                 try {
 
                     Field f1 = AbstractMonster.class.getDeclaredField("intentDmg");
@@ -118,12 +153,15 @@ public class CombatDataDump extends AbstractDataDump{
                 } catch (NoSuchFieldException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
-
+                while (enemyPowers.size() < 30)
+                {
+                    enemyPowers.add(new JsonPower());
+                }
                 for (int j = 0; j < enemy.powers.size(); j++) {
-                    enemyPowers.add(enemy.powers.get(j).name);
+                    enemyPowers.set(j, new JsonPower(enemy.powers.get(j).ID, enemy.powers.get(j).amount));
                 }
 
-                jsonEnemyArrayList.add(new JsonEnemy(enemyCurrentHealth, enemyMaxHealth, enemyCurrentBlock, enemyIntent, enemyIntentDamage, enemyIntentBaseDamage, enemyIntentMultiAmount, enemyIntentIsMultiAttack, enemyPowers));
+                jsonEnemyArrayList.set(i, new JsonEnemy(enemyID, enemyCurrentHealth, enemyMaxHealth, enemyCurrentBlock, enemyIntent, enemyIntentDamage, enemyIntentBaseDamage, enemyIntentMultiAmount, enemyIntentIsMultiAttack, enemyPowers));
             }
         }
     }

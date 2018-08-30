@@ -16,6 +16,8 @@ import jsonUtil.StateDataDump;
 public class CombatRewardScreenPatch {
     public static boolean rewardsFinished = false;
     public static void Postfix (CombatRewardScreen screen) {
+        //TODO: send state to RL
+
         rewardsFinished = false;
         for (RewardItem r : screen.rewards) {
             if (r.type == RewardItem.RewardType.CARD) {

@@ -3,18 +3,27 @@ package jsonUtil;
 import java.util.ArrayList;
 
 public class JsonEnemy {
-    public int currentHealth;
-    public int maxHealth;
-    public int currentBlock;
-    public String intent;
-    public int intentDamage;
-    public int intentBaseDamage;
-    public int intentMultiAmount;
-    public boolean isMultiAttack;
-    public ArrayList<String> powers;
+    public String id = "";
+    public int currentHealth = 0;
+    public int maxHealth = 0;
+    public int currentBlock = 0;
+    public String intent = "NONE";
+    public int intentDamage = 0;
+    public int intentBaseDamage = 0;
+    public int intentMultiAmount = 0;
+    public boolean isMultiAttack = false;
+    public ArrayList<JsonPower> enemypowers = new ArrayList<JsonPower>();
 
-    public JsonEnemy(int currentHealth_p, int maxHealth_p, int currentBlock_p, String intent_p, int intentDamage_p, int intentBaseDamage_p, int intentMultiAmount_p, boolean isMultiAttack_p, ArrayList<String> powers_p)
+    public JsonEnemy() {
+        while (enemypowers.size() < 10)
+        {
+            enemypowers.add(new JsonPower());
+        }
+    }
+
+    public JsonEnemy(String id_p, int currentHealth_p, int maxHealth_p, int currentBlock_p, String intent_p, int intentDamage_p, int intentBaseDamage_p, int intentMultiAmount_p, boolean isMultiAttack_p, ArrayList<JsonPower> powers_p)
     {
+        id = id_p;
         currentHealth = currentHealth_p;
         maxHealth = maxHealth_p;
         currentBlock = currentBlock_p;
@@ -23,6 +32,6 @@ public class JsonEnemy {
         intentBaseDamage = intentBaseDamage_p;
         intentMultiAmount = intentMultiAmount_p;
         isMultiAttack = isMultiAttack_p;
-        powers = powers_p;
+        enemypowers = powers_p;
     }
 }

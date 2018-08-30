@@ -10,9 +10,10 @@ public class StateDataDump extends AbstractDataDump {
 
     //game information
     public static UUID gameID;
-    public static UUID currentStateID;
+    public static int currentStateID;
     int floorNum;
     int actNum;
+    String roomType;
 
     //player information
     String chosenClass;
@@ -22,13 +23,14 @@ public class StateDataDump extends AbstractDataDump {
     ArrayList<String> potions = new ArrayList<String>();
     int currentGold;
     ArrayList<String> relicsOwned = new ArrayList<String>();
-    public static ArrayList<String> relicsSeen; //TODO: get list of all relics seen
+    public static ArrayList<String> relicsSeen;
 
     public void updateStateDataForJson() {
 
-        currentStateID = UUID.randomUUID();
+        currentStateID++;
         floorNum = AbstractDungeon.floorNum;
         actNum = AbstractDungeon.actNum;
+        roomType = AbstractDungeon.getCurrRoom().getMapSymbol();
 
         AbstractPlayer p = AbstractDungeon.player;
 
