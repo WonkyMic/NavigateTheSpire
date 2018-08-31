@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.shop.StorePotion;
 import com.megacrit.cardcrawl.shop.StoreRelic;
+import jsonUtil.JsonDump;
 import jsonUtil.StateDataDump;
 
 import java.lang.reflect.Field;
@@ -50,7 +51,8 @@ public class ShopScreenPatch {
         for(StoreRelic relic : relics) {
             System.out.println("Store relic: " + relic.relic.name + " costs " + relic.price);
             //add to list of relics seen.
-            StateDataDump.relicsSeen.add(relic.relic.name);
+            JsonDump.relicsSeen.set(JsonDump.relicsSeenIter, relic.relic.relicId);
+            JsonDump.relicsSeenIter++;
         }
         for(StorePotion potion : potions) {
             System.out.println("Store potion: " + potion.potion.name + " costs " + potion.price);

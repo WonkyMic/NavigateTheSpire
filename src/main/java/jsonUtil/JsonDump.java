@@ -13,8 +13,12 @@ import javax.ws.rs.core.Response;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
 
 public class JsonDump {
+
+    public static ArrayList<String> relicsSeen;
+    public static int relicsSeenIter;
 
     public void createStateJson()
     {
@@ -50,9 +54,11 @@ public class JsonDump {
     public void createJson(AbstractDataDump data)
     {
         Gson gson = new GsonBuilder()
+                /*
                 .registerTypeAdapter(AbstractMonster.class, new MyTypeAdapter<AbstractMonster>())
                 .addSerializationExclusionStrategy(new TestExclusionStrategy())
                 .addDeserializationExclusionStrategy(new TestExclusionStrategy())
+                */
                 .setPrettyPrinting()
                 .create();
 

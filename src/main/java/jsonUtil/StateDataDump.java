@@ -23,7 +23,8 @@ public class StateDataDump extends AbstractDataDump {
     ArrayList<String> potions = new ArrayList<String>();
     int currentGold;
     ArrayList<String> relicsOwned = new ArrayList<String>();
-    public static ArrayList<String> relicsSeen;
+    ArrayList<String> relicsSeen;
+
 
     public void updateStateDataForJson() {
 
@@ -39,22 +40,31 @@ public class StateDataDump extends AbstractDataDump {
         chosenClass = p.chosenClass.toString();
         currentHealth = p.currentHealth;
         maxHealth = p.maxHealth;
+        while (deck.size() < 200)
+        {
+            deck.add("");
+        }
         if (p.masterDeck.group != null) {
             for (int i = 0; i < p.masterDeck.group.size(); i++) {
-                deck.add(p.masterDeck.group.get(i).name);
+                deck.set(i, p.masterDeck.group.get(i).cardID);
             }
         }
         if (p.potions != null) {
             for (int i = 0; i < p.potions.size(); i++) {
-                potions.add(p.potions.get(i).name);
+                potions.add(p.potions.get(i).ID);
             }
         }
         currentGold = p.gold;
+        while (relicsOwned.size() < 200)
+        {
+            relicsOwned.add("");
+        }
         if (p.relics != null) {
             for (int i = 0; i < p.relics.size(); i++) {
-                relicsOwned.add(p.relics.get(i).name);
+                relicsOwned.set(i, p.relics.get(i).relicId);
             }
         }
+        relicsSeen = JsonDump.relicsSeen;
         }
     }
 

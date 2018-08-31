@@ -38,7 +38,7 @@ public class CombatDataDump extends AbstractDataDump{
     transient int enemyIntentDamage = 0;
     transient int enemyIntentBaseDamage = 0;
     transient int enemyIntentMultiAmount = 0;
-    transient boolean enemyIntentIsMultiAttack = false;
+    transient int enemyIntentIsMultiAttack = 0;
     transient ArrayList<JsonPower> enemyPowers = new ArrayList<JsonPower>();
 
     public void updateCombatDataForJson() {
@@ -69,7 +69,7 @@ public class CombatDataDump extends AbstractDataDump{
         if (p.hand.group != null) {
             for (int i = 0; i < p.hand.group.size(); i++) {
                 AbstractCard c = p.hand.group.get(i);
-                jsonCardArrayListHand.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, c.upgraded, c.exhaust));
+                jsonCardArrayListHand.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, (c.upgraded) ? 1 : 0, (c.exhaust) ? 1 : 0));
             }
         }
         while (jsonCardArrayListExhaustPile.size() < 100)
@@ -79,7 +79,7 @@ public class CombatDataDump extends AbstractDataDump{
         if (p.exhaustPile.group != null) {
             for (int i = 0; i < p.exhaustPile.group.size(); i++) {
                 AbstractCard c = p.exhaustPile.group.get(i);
-                jsonCardArrayListExhaustPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, c.upgraded, c.exhaust));
+                jsonCardArrayListExhaustPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, (c.upgraded) ? 1 : 0, (c.exhaust) ? 1 : 0));
             }
         }
         while (jsonCardArrayListDiscardPile.size() < 100)
@@ -89,7 +89,7 @@ public class CombatDataDump extends AbstractDataDump{
         if (p.discardPile.group != null) {
             for (int i = 0; i < p.discardPile.group.size(); i++) {
                 AbstractCard c = p.discardPile.group.get(i);
-                jsonCardArrayListDiscardPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, c.upgraded, c.exhaust));
+                jsonCardArrayListDiscardPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, (c.upgraded) ? 1 : 0, (c.exhaust) ? 1 : 0));
             }
         }
         while (jsonCardArrayListDrawPile.size() < 200)
@@ -99,16 +99,19 @@ public class CombatDataDump extends AbstractDataDump{
         if (p.drawPile.group != null) {
             for (int i = 0; i < p.drawPile.group.size(); i++) {
                 AbstractCard c = p.drawPile.group.get(i);
-                jsonCardArrayListDrawPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, c.upgraded, c.exhaust));
+                jsonCardArrayListDrawPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, (c.upgraded) ? 1 : 0, (c.exhaust) ? 1 : 0));
             }
         }
         //TODO: get list of all relics seen
 
-
+        while (currentOrbs.size() < 10)
+        {
+            currentOrbs.add("");
+        }
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
             if (p.orbs != null) {
                 for (int i = 0; i < p.orbs.size(); i++) {
-                    currentOrbs.add(p.orbs.get(i).ID);
+                    currentOrbs.set(i,p.orbs.get(i).ID);
                 }
             }
             orbSlots = p.maxOrbs;
@@ -147,7 +150,15 @@ public class CombatDataDump extends AbstractDataDump{
 
                     Field f4 = AbstractMonster.class.getDeclaredField("isMultiDmg");
                     f4.setAccessible(true);
-                    enemyIntentIsMultiAttack = f4.getBoolean(enemy);
+                    boolean tmp = f4.getBoolean(enemy);
+                    if(tmp)
+                    {
+                        enemyIntentIsMultiAttack = 1;
+                    }
+                    else
+                    {
+                        enemyIntentIsMultiAttack = 0;
+                    }
 
 
                 } catch (NoSuchFieldException | IllegalAccessException e) {

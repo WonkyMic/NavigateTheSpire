@@ -8,12 +8,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.RelicStrings;
+import jsonUtil.JsonDump;
 import jsonUtil.StateDataDump;
 import relics.AutoPlayRelic;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.UUID;
+
+import static jsonUtil.JsonDump.relicsSeen;
 
 //When all External Libraries are added from the pom.xml using maven the code can be uncommented.
 
@@ -82,7 +85,11 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 
 	@Override
 	public void receivePostDungeonInitialize() {
-    	StateDataDump.relicsSeen = new ArrayList<String>();
+		JsonDump.relicsSeen = new ArrayList<String>();
+    	while (JsonDump.relicsSeen.size() < 200) {
+			JsonDump.relicsSeen.add("");
+		}
+		JsonDump.relicsSeenIter = 0;
 		StateDataDump.gameID = UUID.randomUUID();
 		StateDataDump.currentStateID = 0;
 	}
