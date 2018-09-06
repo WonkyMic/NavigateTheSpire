@@ -32,7 +32,7 @@ public class AutoPlayFormPower extends AbstractPower {
 	@Override
 	public void onAfterUseCard (AbstractCard card, UseCardAction action) {
 		System.out.println("onAfterUseCard");
-		AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
+		//AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
 	}
 
 

@@ -90,8 +90,8 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 			JsonDump.relicsSeen.add("");
 		}
 		JsonDump.relicsSeenIter = 0;
-		StateDataDump.gameID = UUID.randomUUID();
-		StateDataDump.currentStateID = 0;
+		JsonDump.gameID = UUID.randomUUID();
+		JsonDump.currentStateID = 0;
 	}
 
 	@Override

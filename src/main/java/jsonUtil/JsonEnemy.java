@@ -15,7 +15,7 @@ public class JsonEnemy {
     public ArrayList<JsonPower> enemypowers = new ArrayList<JsonPower>();
 
     public JsonEnemy() {
-        while (enemypowers.size() < 10)
+        while (enemypowers.size() < 30)
         {
             enemypowers.add(new JsonPower());
         }

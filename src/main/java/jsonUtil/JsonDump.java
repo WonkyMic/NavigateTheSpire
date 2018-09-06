@@ -14,11 +14,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class JsonDump {
 
     public static ArrayList<String> relicsSeen;
     public static int relicsSeenIter;
+    public static UUID gameID;
+    public static int currentStateID;
 
     public void createStateJson()
     {

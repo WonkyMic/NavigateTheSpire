@@ -1,5 +1,6 @@
 package jsonUtil;
 
+import Map.MapUtil;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
@@ -8,9 +9,10 @@ import java.util.UUID;
 
 public class StateDataDump extends AbstractDataDump {
 
+
+    UUID gameID;
+    int currentStateID;
     //game information
-    public static UUID gameID;
-    public static int currentStateID;
     int floorNum;
     int actNum;
     String roomType;
@@ -24,14 +26,19 @@ public class StateDataDump extends AbstractDataDump {
     int currentGold;
     ArrayList<String> relicsOwned = new ArrayList<String>();
     ArrayList<String> relicsSeen;
+    transient ArrayList<String> availablePathArrayList = new ArrayList<String>();
 
 
     public void updateStateDataForJson() {
 
-        currentStateID++;
+        gameID = JsonDump.gameID;
+        JsonDump.currentStateID++;
+        currentStateID = JsonDump.currentStateID;
         floorNum = AbstractDungeon.floorNum;
         actNum = AbstractDungeon.actNum;
         roomType = AbstractDungeon.getCurrRoom().getMapSymbol();
+        MapUtil mUtil = new MapUtil();
+        availablePathArrayList = mUtil.createAvailablePathArrayList(AbstractDungeon.getCurrMapNode());
 
         AbstractPlayer p = AbstractDungeon.player;
 
@@ -49,9 +56,13 @@ public class StateDataDump extends AbstractDataDump {
                 deck.set(i, p.masterDeck.group.get(i).cardID);
             }
         }
+        while (potions.size() < 5)
+        {
+            potions.add("");
+        }
         if (p.potions != null) {
             for (int i = 0; i < p.potions.size(); i++) {
-                potions.add(p.potions.get(i).ID);
+                potions.set(i, p.potions.get(i).ID);
             }
         }
         currentGold = p.gold;

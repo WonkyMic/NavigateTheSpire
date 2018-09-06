@@ -12,6 +12,7 @@ public class EventDataDump extends AbstractDataDump{
 
     int currentStateID;
     UUID eventStateID;
+    UUID gameID;
     String eventName;
     ArrayList<String> roomEventOptions = new ArrayList<String>();
     ArrayList<String> imageEventOptions = new ArrayList<String>();
@@ -36,8 +37,9 @@ public class EventDataDump extends AbstractDataDump{
             imageEventOptions.add(option.msg.toString());
         }
 
-        currentStateID = StateDataDump.currentStateID;
+        currentStateID = JsonDump.currentStateID;
         eventStateID = UUID.randomUUID();
+        gameID = JsonDump.gameID;
 
     }
 

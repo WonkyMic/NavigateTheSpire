@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import jsonUtil.JsonDump;
 import powers.AutoPlayFormPower;
 
 public class AutoPlayRelic extends CustomRelic {
@@ -43,6 +44,8 @@ public class AutoPlayRelic extends CustomRelic {
     public void atTurnStartPostDraw()
     {
         System.out.println("atTurnStartPostDraw From Relic");
-        AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
+        //AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
+        JsonDump jsonDump = new JsonDump();
+        jsonDump.createCombatJson();
     }
 }

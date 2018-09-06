@@ -65,6 +65,54 @@ public class MapUtil
         return pickBestPath();
     }
 
+    public ArrayList<String> createAvailablePathArrayList( MapRoomNode currentNode)
+    {
+        MapRoomNode nextNode;
+        ArrayList<ArrayList<MapRoomNode>> nodesToIterateOver = new ArrayList<ArrayList<MapRoomNode>>();
+        int getNode = 0;
+        if ( currentNode.y < 0 )
+        {
+            nodesToIterateOver.addAll(mapNodes);
+        }
+        else
+        {
+            getNode = 1;
+            nodesToIterateOver.add(new ArrayList<MapRoomNode>(Arrays.asList(currentNode)));
+        }
+
+        if ( currentNode.y == 14 )
+        {
+            nextNode = new MapRoomNode(-1, 15);
+            nextNode.room = new MonsterRoomBoss();
+        }
+        else {
+            nextNode = createOptimalPath(nodesToIterateOver).get(getNode);
+        }
+
+        ArrayList<String> allPaths = new ArrayList<String>();
+        while (allPaths.size() < 1000)
+        {
+            allPaths.add("");
+        }
+
+
+        for ( int i=0 ; i<paths.size() ; i++ )
+        {
+            // Converting mapNodes to their room symbol
+            // to be evaluated by class EvaluatePath
+            // example :: MM?MMER?TER$?MR
+            StringBuilder str = new StringBuilder();
+            for (MapRoomNode node : paths.get(i))
+            {
+                str.append(node.getRoomSymbol(true));
+            }
+            allPaths.set(i, str.toString());
+            System.out.println("path: " + str.toString());
+        }
+
+        return allPaths;
+    }
+
     private ArrayList<MapRoomNode> pickBestPath()
     {
         // Storing path as:

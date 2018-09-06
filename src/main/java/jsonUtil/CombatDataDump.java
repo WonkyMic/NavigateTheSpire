@@ -15,6 +15,7 @@ public class CombatDataDump extends AbstractDataDump{
 
     int currentStateID;
     UUID combatStateID;
+    UUID gameID;
 
     //player information
     int currentBlock;
@@ -43,8 +44,9 @@ public class CombatDataDump extends AbstractDataDump{
 
     public void updateCombatDataForJson() {
 
-        currentStateID = StateDataDump.currentStateID;
+        currentStateID = JsonDump.currentStateID;
         combatStateID = UUID.randomUUID();
+        gameID = JsonDump.gameID;
 
         AbstractPlayer p = AbstractDungeon.player;
 

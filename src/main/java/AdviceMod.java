@@ -20,6 +20,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 
 import static basemod.patches.com.megacrit.cardcrawl.ui.panels.EnergyPanel.CtorSwitch.logger;
 
@@ -67,6 +68,8 @@ public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSub
         previousFloor = AbstractDungeon.floorNum;
         MapUtil mUtil = new MapUtil();
         mUtil.getNextMapRoomNode(AbstractDungeon.getCurrMapNode());
+        ArrayList<String> availablePathArrayList = mUtil.createAvailablePathArrayList(AbstractDungeon.getCurrMapNode());
+        System.out.println("Available Paths: " + availablePathArrayList.get(0));
     }
 
     @Override
@@ -74,16 +77,6 @@ public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSub
     {
         //seeRelicPool();
         //seeCardPool();
-        //TODO: get all info that is sent to bot as a String and encode it to ints
-        //System.out.println(CardLibrary.getAllCards().toString());
-        //System.out.println("Relics: " + RelicLibrary.blueList+RelicLibrary.greenList.toString()+RelicLibrary.redList.toString()+RelicLibrary.bossList.toString()+RelicLibrary.commonList.toString()+RelicLibrary.uncommonList.toString()+RelicLibrary.rareList.toString()+RelicLibrary.shopList.toString()+RelicLibrary.specialList.toString()+RelicLibrary.starterList.toString());
-        initializePowerMap();
-        System.out.println("Powers: " + powerMap.keySet());
-        initializeMonsterMap();
-        System.out.println("Monsters: " + monsterMap.keySet());
-        System.out.println("Potions: " + PotionHelper.potions.toString());
-
-
     }
 
     /**
@@ -100,84 +93,4 @@ public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSub
         }
     }
 
-
-
-
-
-
-    public void initializePowerMap() {
-        logger.info("initializePowerMap");
-        powerMap = new HashMap<>();
-
-        ClassFinder finder = new ClassFinder();
-        URL url = AbstractPower.class.getProtectionDomain().getCodeSource().getLocation();
-        try {
-            finder.add(new File(url.toURI()));
-
-            ClassFilter filter = new AndClassFilter(
-                    new NotClassFilter(new InterfaceOnlyClassFilter()),
-                    new NotClassFilter(new AbstractClassFilter()),
-                    new RegexClassFilter("com\\.megacrit\\.cardcrawl\\.powers\\..+")
-            );
-            Collection<ClassInfo> foundClasses = new ArrayList<>();
-            finder.findClasses(foundClasses, filter);
-
-            for (ClassInfo classInfo : foundClasses) {
-                if (classInfo.getClassName().contains("$")) {
-                    continue;
-                }
-                try {
-                    for (FieldInfo fieldInfo : classInfo.getFields()) {
-                        if (fieldInfo.getName().equals("NAME") && fieldInfo.getValue() instanceof String) {
-                            powerMap.put((String) fieldInfo.getValue(),
-                                    (Class<? extends AbstractPower>) BaseMod.class.getClassLoader().loadClass(classInfo.getClassName()));
-                            break;
-                        }
-                    }
-                } catch (ClassNotFoundException e) {
-                    System.out.println("ERROR: Failed to load power class: " + classInfo.getClassName());
-                }
-            }
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void initializeMonsterMap() {
-        logger.info("initializeMonsterMap");
-        monsterMap = new HashMap<>();
-
-        ClassFinder finder = new ClassFinder();
-        URL url = AbstractPower.class.getProtectionDomain().getCodeSource().getLocation();
-        try {
-            finder.add(new File(url.toURI()));
-
-            ClassFilter filter = new AndClassFilter(
-                    new NotClassFilter(new InterfaceOnlyClassFilter()),
-                    new NotClassFilter(new AbstractClassFilter()),
-                    new RegexClassFilter("com\\.megacrit\\.cardcrawl\\.monsters\\..+")
-            );
-            Collection<ClassInfo> foundClasses = new ArrayList<>();
-            finder.findClasses(foundClasses, filter);
-
-            for (ClassInfo classInfo : foundClasses) {
-                if (classInfo.getClassName().contains("$")) {
-                    continue;
-                }
-                try {
-                    for (FieldInfo fieldInfo : classInfo.getFields()) {
-                        if (fieldInfo.getName().equals("NAME") && fieldInfo.getValue() instanceof String) {
-                            monsterMap.put((String) fieldInfo.getValue(),
-                                    (Class<? extends AbstractMonster>) BaseMod.class.getClassLoader().loadClass(classInfo.getClassName()));
-                            break;
-                        }
-                    }
-                } catch (ClassNotFoundException e) {
-                    System.out.println("ERROR: Failed to load monster class: " + classInfo.getClassName());
-                }
-            }
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
 }
