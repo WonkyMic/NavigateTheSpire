@@ -31,8 +31,7 @@ public class AutoPlayFormPower extends AbstractPower {
 	//TODO: Figure out where this gets called and patch so that power is unnecessary?
 	@Override
 	public void onAfterUseCard (AbstractCard card, UseCardAction action) {
-		System.out.println("onAfterUseCard");
-		//AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
+		AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
 	}
 
 

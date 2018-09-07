@@ -12,11 +12,12 @@ public class JsonCard {
     public int baseHeal = -1;
     public int upgraded = 0;
     public int exhaust = 0;
+    public int isPlayable = 0;
 
     public JsonCard() {
     }
 
-    public JsonCard(String id_p, int costForTurn_p, int cost_p, String type_p, int baseBlock_p, int baseDamage_p, int baseDiscard_p, int baseDraw_p, int baseHeal_p, int upgraded_p, int exhaust_p)
+    public JsonCard(String id_p, int costForTurn_p, int cost_p, String type_p, int baseBlock_p, int baseDamage_p, int baseDiscard_p, int baseDraw_p, int baseHeal_p, int upgraded_p, int exhaust_p, int isPlayable_p)
     {
         cardId = id_p;
         costForTurn = costForTurn_p;
@@ -29,5 +30,6 @@ public class JsonCard {
         baseHeal = baseHeal_p;
         upgraded = upgraded_p;
         exhaust = exhaust_p;
+        isPlayable = isPlayable_p;
     }
 }

@@ -68,10 +68,11 @@ public class CombatDataDump extends AbstractDataDump{
         {
             jsonCardArrayListHand.add(new JsonCard());
         }
+        System.out.println(p.hand.group);
         if (p.hand.group != null) {
             for (int i = 0; i < p.hand.group.size(); i++) {
                 AbstractCard c = p.hand.group.get(i);
-                jsonCardArrayListHand.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, (c.upgraded) ? 1 : 0, (c.exhaust) ? 1 : 0));
+                jsonCardArrayListHand.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, (c.upgraded) ? 1 : 0, (c.exhaust) ? 1 : 0, (c.hasEnoughEnergy()) ? 1 : 0));
             }
         }
         while (jsonCardArrayListExhaustPile.size() < 100)
@@ -81,7 +82,7 @@ public class CombatDataDump extends AbstractDataDump{
         if (p.exhaustPile.group != null) {
             for (int i = 0; i < p.exhaustPile.group.size(); i++) {
                 AbstractCard c = p.exhaustPile.group.get(i);
-                jsonCardArrayListExhaustPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, (c.upgraded) ? 1 : 0, (c.exhaust) ? 1 : 0));
+                jsonCardArrayListExhaustPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, (c.upgraded) ? 1 : 0, (c.exhaust) ? 1 : 0, (c.hasEnoughEnergy()) ? 1 : 0));
             }
         }
         while (jsonCardArrayListDiscardPile.size() < 100)
@@ -91,7 +92,7 @@ public class CombatDataDump extends AbstractDataDump{
         if (p.discardPile.group != null) {
             for (int i = 0; i < p.discardPile.group.size(); i++) {
                 AbstractCard c = p.discardPile.group.get(i);
-                jsonCardArrayListDiscardPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, (c.upgraded) ? 1 : 0, (c.exhaust) ? 1 : 0));
+                jsonCardArrayListDiscardPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, (c.upgraded) ? 1 : 0, (c.exhaust) ? 1 : 0, (c.hasEnoughEnergy()) ? 1 : 0));
             }
         }
         while (jsonCardArrayListDrawPile.size() < 200)
@@ -101,7 +102,7 @@ public class CombatDataDump extends AbstractDataDump{
         if (p.drawPile.group != null) {
             for (int i = 0; i < p.drawPile.group.size(); i++) {
                 AbstractCard c = p.drawPile.group.get(i);
-                jsonCardArrayListDrawPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, (c.upgraded) ? 1 : 0, (c.exhaust) ? 1 : 0));
+                jsonCardArrayListDrawPile.set(i, new JsonCard(c.cardID, c.costForTurn, c.cost, c.type.toString(), c.baseBlock, c.baseDamage, c.baseDiscard, c.baseDraw, c.baseHeal, (c.upgraded) ? 1 : 0, (c.exhaust) ? 1 : 0, (c.hasEnoughEnergy()) ? 1 : 0));
             }
         }
         //TODO: get list of all relics seen

@@ -107,7 +107,7 @@ public class MapUtil
                 str.append(node.getRoomSymbol(true));
             }
             allPaths.set(i, str.toString());
-            System.out.println("path: " + str.toString());
+            //System.out.println("path: " + str.toString());
         }
 
         return allPaths;

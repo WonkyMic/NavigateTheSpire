@@ -44,8 +44,6 @@ public class AutoPlayRelic extends CustomRelic {
     public void atTurnStartPostDraw()
     {
         System.out.println("atTurnStartPostDraw From Relic");
-        //AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
-        JsonDump jsonDump = new JsonDump();
-        jsonDump.createCombatJson();
+        AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
     }
 }
