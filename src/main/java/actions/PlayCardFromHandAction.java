@@ -27,38 +27,40 @@ public class PlayCardFromHandAction extends com.megacrit.cardcrawl.actions.Abstr
     	JsonDump jsonDump = new JsonDump();
 		JsonObject actions = jsonDump.createCombatJson();
 
-    	actions.get("card_or_potion_to_use");
-		int monsterIndex = Integer.parseInt(actions.get("monster_to_target").toString());
-		int cardIndex = Integer.parseInt(actions.get("card_or_potion_to_use").toString());
+		try {
+			actions.get("card_or_potion_to_use");
+			int monsterIndex = Integer.parseInt(actions.get("monster_to_target").toString());
+			int cardIndex = Integer.parseInt(actions.get("card_or_potion_to_use").toString());
+			AbstractMonster m = AbstractDungeon.getCurrRoom().monsters.monsters.get(monsterIndex);
 
-		AbstractMonster m = AbstractDungeon.getCurrRoom().monsters.monsters.get(monsterIndex);
-
-    	//TODO: Request python for card to play and enemy to target OR potion to use
-		if(cardIndex <= 9) {
-			AbstractCard cardToPlay = p.hand.group.get(cardIndex);
-			if (cardToPlay.canUse(p, m)) {
-				AbstractDungeon.player.limbo.group.add(cardToPlay);
-				AbstractDungeon.player.hand.group.remove(cardToPlay);
-				cardToPlay.applyPowers();
-				AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.utility.QueueCardAction(cardToPlay, m));
-				AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.utility.WaitAction(3f));
+			//TODO: Request python for card to play and enemy to target OR potion to use
+			if (cardIndex <= 9) {
+				AbstractCard cardToPlay = p.hand.group.get(cardIndex);
+				if (cardToPlay.canUse(p, m)) {
+					AbstractDungeon.player.limbo.group.add(cardToPlay);
+					AbstractDungeon.player.hand.group.remove(cardToPlay);
+					cardToPlay.applyPowers();
+					AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.utility.QueueCardAction(cardToPlay, m));
+					AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.utility.WaitAction(3f));
+				}
+			} else if (cardIndex <= 14) {
+				AbstractPotion potion = p.potions.get(cardIndex - 10);
+				potion.use(m);
+				for (final AbstractRelic r : AbstractDungeon.player.relics) {
+					r.onUsePotion();
+				}
+				if (!"Potion Slot".equalsIgnoreCase(potion.name)) {
+					AbstractDungeon.topPanel.destroyPotion(potion.slot);
+				}
+			} else {
+				AbstractDungeon.actionManager.cardQueue.clear();
+				AbstractDungeon.player.limbo.group.clear();
+				AbstractDungeon.player.releaseCard();
+				AbstractDungeon.overlayMenu.endTurnButton.disable(true);
 			}
 		}
-		else if(cardIndex <= 14){
-			AbstractPotion potion = p.potions.get(cardIndex-10);
-			potion.use(m);
-			for (final AbstractRelic r : AbstractDungeon.player.relics) {
-				r.onUsePotion();
-			}
-			if (!"Potion Slot".equalsIgnoreCase(potion.name) ) {
-				AbstractDungeon.topPanel.destroyPotion(potion.slot);
-			}
-		}
-		else {
-			AbstractDungeon.actionManager.cardQueue.clear();
-			AbstractDungeon.player.limbo.group.clear();
-			AbstractDungeon.player.releaseCard();
-			AbstractDungeon.overlayMenu.endTurnButton.disable(true);
+		catch (NullPointerException e){
+			e.printStackTrace();
 		}
 
 

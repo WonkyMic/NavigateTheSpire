@@ -6,17 +6,13 @@ import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import jsonUtil.JsonDump;
-import jsonUtil.StateDataDump;
 import relics.AutoPlayRelic;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.UUID;
-
-import static jsonUtil.JsonDump.relicsSeen;
 
 //When all External Libraries are added from the pom.xml using maven the code can be uncommented.
 
@@ -46,12 +42,13 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 
 	@Override
 	public void receiveCardUsed(AbstractCard arg0) {
-
+		/*
 		//TODO :: remove health logic
 		if ( AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth )
 		{
 			AbstractDungeon.player.currentHealth = AbstractDungeon.player.maxHealth;
 		}
+		*/
 	}
 
 
@@ -85,11 +82,6 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 
 	@Override
 	public void receivePostDungeonInitialize() {
-		JsonDump.relicsSeen = new ArrayList<String>();
-    	while (JsonDump.relicsSeen.size() < 200) {
-			JsonDump.relicsSeen.add("");
-		}
-		JsonDump.relicsSeenIter = 0;
 		JsonDump.gameID = UUID.randomUUID();
 		JsonDump.currentStateID = 0;
 	}

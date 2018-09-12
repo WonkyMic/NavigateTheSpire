@@ -60,7 +60,8 @@ public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSub
                                 + "Rare List :: " + AbstractDungeon.rareCardPool + "\n"
                                 // Need to investigate how this card pool is generated
 //                                + "Shop List :: " + AbstractDungeon.shop + "\n"
-                                + "Boss List :: " + AbstractDungeon.getBossRewardCards() + "\n");
+                                //+ "Boss List :: " + AbstractDungeon.getBossRewardCards() + "\n"
+                        );
     }
 
     private void invokeNextMapNode()
@@ -68,8 +69,8 @@ public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSub
         previousFloor = AbstractDungeon.floorNum;
         MapUtil mUtil = new MapUtil();
         mUtil.getNextMapRoomNode(AbstractDungeon.getCurrMapNode());
-        ArrayList<String> availablePathArrayList = mUtil.createAvailablePathArrayList(AbstractDungeon.getCurrMapNode());
-        System.out.println("Available Paths: " + availablePathArrayList.get(0));
+        //ArrayList<String> availablePathArrayList = mUtil.createAvailablePathArrayList(AbstractDungeon.getCurrMapNode());
+        //System.out.println("Available Paths: " + availablePathArrayList.get(0));
     }
 
     @Override
