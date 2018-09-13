@@ -1823,262 +1823,386 @@ public class StateDataDump extends AbstractDataDump {
                     case 0:
                         switch (p.potions.get(i).ID) {
                             case "Ancient Potion":
-                                potionSlot0IsAncientPotion = 1; break;
+                                potionSlot0IsAncientPotion = 1;
+                                break;
                             case "AttackPotion":
-                                potionSlot0IsAttackPotion = 1; break;
+                                potionSlot0IsAttackPotion = 1;
+                                break;
                             case "Block Potion":
-                                potionSlot0IsBlockPotion = 1; break;
+                                potionSlot0IsBlockPotion = 1;
+                                break;
                             case "BloodPotion":
-                                potionSlot0IsBloodPotion = 1; break;
+                                potionSlot0IsBloodPotion = 1;
+                                break;
                             case "Dexterity Potion":
-                                potionSlot0IsDexterityPotion = 1; break;
+                                potionSlot0IsDexterityPotion = 1;
+                                break;
                             case "Elixir":
-                                potionSlot0IsElixir = 1; break;
+                                potionSlot0IsElixir = 1;
+                                break;
                             case "Energy Potion":
-                                potionSlot0IsEnergyPotion = 1; break;
+                                potionSlot0IsEnergyPotion = 1;
+                                break;
                             case "EntropicBrew":
-                                potionSlot0IsEntropicBrew = 1; break;
+                                potionSlot0IsEntropicBrew = 1;
+                                break;
                             case "EssenceOfSteel":
-                                potionSlot0IsEssenceOfSteel = 1; break;
+                                potionSlot0IsEssenceOfSteel = 1;
+                                break;
                             case "Explosive Potion":
-                                potionSlot0IsExplosivePotion = 1; break;
+                                potionSlot0IsExplosivePotion = 1;
+                                break;
                             case "FairyPotion":
-                                potionSlot0IsFairyPotion = 1; break;
+                                potionSlot0IsFairyPotion = 1;
+                                break;
                             case "FearPotion":
-                                potionSlot0IsFearPotion = 1; break;
+                                potionSlot0IsFearPotion = 1;
+                                break;
                             case "Fire Potion":
-                                potionSlot0IsFirePotion = 1; break;
+                                potionSlot0IsFirePotion = 1;
+                                break;
                             case "FocusPotion":
-                                potionSlot0IsFocusPotion = 1; break;
+                                potionSlot0IsFocusPotion = 1;
+                                break;
                             case "Fruit Juice":
-                                potionSlot0IsFruitJuice = 1; break;
+                                potionSlot0IsFruitJuice = 1;
+                                break;
                             case "GamblersBrew":
-                                potionSlot0IsGamblersBrew = 1; break;
+                                potionSlot0IsGamblersBrew = 1;
+                                break;
                             case "GhostInAJar":
-                                potionSlot0IsGhostInAJar = 1; break;
+                                potionSlot0IsGhostInAJar = 1;
+                                break;
                             case "Health Potion":
-                                potionSlot0IsHealthPotion = 1; break;
+                                potionSlot0IsHealthPotion = 1;
+                                break;
                             case "LiquidBronze":
-                                potionSlot0IsLiquidBronze = 1; break;
+                                potionSlot0IsLiquidBronze = 1;
+                                break;
                             case "Poison Potion":
-                                potionSlot0IsPoisonPotion = 1; break;
+                                potionSlot0IsPoisonPotion = 1;
+                                break;
                             case "Potion Slot":
-                                potionSlot0IsPotionSlot = 1; break;
+                                potionSlot0IsPotionSlot = 1;
+                                break;
                             case "PowerPotion":
-                                potionSlot0IsPowerPotion = 1; break;
+                                potionSlot0IsPowerPotion = 1;
+                                break;
                             case "Regen Potion":
-                                potionSlot0IsRegenPotion = 1; break;
+                                potionSlot0IsRegenPotion = 1;
+                                break;
                             case "SkillPotion":
-                                potionSlot0IsSkillPotion = 1; break;
+                                potionSlot0IsSkillPotion = 1;
+                                break;
                             case "SmokeBomb":
-                                potionSlot0IsSmokeBomb = 1; break;
+                                potionSlot0IsSmokeBomb = 1;
+                                break;
                             case "SneckoOil":
-                                potionSlot0IsSneckoOil = 1; break;
+                                potionSlot0IsSneckoOil = 1;
+                                break;
                             case "SpeedPotion":
-                                potionSlot0IsSpeedPotion = 1; break;
+                                potionSlot0IsSpeedPotion = 1;
+                                break;
                             case "SteroidPotion":
-                                potionSlot0IsSteroidPotion = 1; break;
+                                potionSlot0IsSteroidPotion = 1;
+                                break;
                             case "Strength Potion":
-                                potionSlot0IsStrengthPotion = 1; break;
+                                potionSlot0IsStrengthPotion = 1;
+                                break;
                             case "Swift Potion":
-                                potionSlot0IsSwiftPotion = 1; break;
+                                potionSlot0IsSwiftPotion = 1;
+                                break;
                             case "Weak Potion":
-                                potionSlot0IsWeakPotion = 1; break;
+                                potionSlot0IsWeakPotion = 1;
+                                break;
                         }
                     case 1:
                         switch (p.potions.get(i).ID) {
                             case "Ancient Potion":
-                                potionSlot1IsAncientPotion = 1; break;
+                                potionSlot1IsAncientPotion = 1;
+                                break;
                             case "AttackPotion":
-                                potionSlot1IsAttackPotion = 1; break;
+                                potionSlot1IsAttackPotion = 1;
+                                break;
                             case "Block Potion":
-                                potionSlot1IsBlockPotion = 1; break;
+                                potionSlot1IsBlockPotion = 1;
+                                break;
                             case "BloodPotion":
-                                potionSlot1IsBloodPotion = 1; break;
+                                potionSlot1IsBloodPotion = 1;
+                                break;
                             case "Dexterity Potion":
-                                potionSlot1IsDexterityPotion = 1; break;
+                                potionSlot1IsDexterityPotion = 1;
+                                break;
                             case "Elixir":
-                                potionSlot1IsElixir = 1; break;
+                                potionSlot1IsElixir = 1;
+                                break;
                             case "Energy Potion":
-                                potionSlot1IsEnergyPotion = 1; break;
+                                potionSlot1IsEnergyPotion = 1;
+                                break;
                             case "EntropicBrew":
-                                potionSlot1IsEntropicBrew = 1; break;
+                                potionSlot1IsEntropicBrew = 1;
+                                break;
                             case "EssenceOfSteel":
-                                potionSlot1IsEssenceOfSteel = 1; break;
+                                potionSlot1IsEssenceOfSteel = 1;
+                                break;
                             case "Explosive Potion":
-                                potionSlot1IsExplosivePotion = 1; break;
+                                potionSlot1IsExplosivePotion = 1;
+                                break;
                             case "FairyPotion":
-                                potionSlot1IsFairyPotion = 1; break;
+                                potionSlot1IsFairyPotion = 1;
+                                break;
                             case "FearPotion":
-                                potionSlot1IsFearPotion = 1; break;
+                                potionSlot1IsFearPotion = 1;
+                                break;
                             case "Fire Potion":
-                                potionSlot1IsFirePotion = 1; break;
+                                potionSlot1IsFirePotion = 1;
+                                break;
                             case "FocusPotion":
-                                potionSlot1IsFocusPotion = 1; break;
+                                potionSlot1IsFocusPotion = 1;
+                                break;
                             case "Fruit Juice":
-                                potionSlot1IsFruitJuice = 1; break;
+                                potionSlot1IsFruitJuice = 1;
+                                break;
                             case "GamblersBrew":
-                                potionSlot1IsGamblersBrew = 1; break;
+                                potionSlot1IsGamblersBrew = 1;
+                                break;
                             case "GhostInAJar":
-                                potionSlot1IsGhostInAJar = 1; break;
+                                potionSlot1IsGhostInAJar = 1;
+                                break;
                             case "Health Potion":
-                                potionSlot1IsHealthPotion = 1; break;
+                                potionSlot1IsHealthPotion = 1;
+                                break;
                             case "LiquidBronze":
-                                potionSlot1IsLiquidBronze = 1; break;
+                                potionSlot1IsLiquidBronze = 1;
+                                break;
                             case "Poison Potion":
-                                potionSlot1IsPoisonPotion = 1; break;
+                                potionSlot1IsPoisonPotion = 1;
+                                break;
                             case "Potion Slot":
-                                potionSlot1IsPotionSlot = 1; break;
+                                potionSlot1IsPotionSlot = 1;
+                                break;
                             case "PowerPotion":
-                                potionSlot1IsPowerPotion = 1; break;
+                                potionSlot1IsPowerPotion = 1;
+                                break;
                             case "Regen Potion":
-                                potionSlot1IsRegenPotion = 1; break;
+                                potionSlot1IsRegenPotion = 1;
+                                break;
                             case "SkillPotion":
-                                potionSlot1IsSkillPotion = 1; break;
+                                potionSlot1IsSkillPotion = 1;
+                                break;
                             case "SmokeBomb":
-                                potionSlot1IsSmokeBomb = 1; break;
+                                potionSlot1IsSmokeBomb = 1;
+                                break;
                             case "SneckoOil":
-                                potionSlot1IsSneckoOil = 1; break;
+                                potionSlot1IsSneckoOil = 1;
+                                break;
                             case "SpeedPotion":
-                                potionSlot1IsSpeedPotion = 1; break;
+                                potionSlot1IsSpeedPotion = 1;
+                                break;
                             case "SteroidPotion":
-                                potionSlot1IsSteroidPotion = 1; break;
+                                potionSlot1IsSteroidPotion = 1;
+                                break;
                             case "Strength Potion":
-                                potionSlot1IsStrengthPotion = 1; break;
+                                potionSlot1IsStrengthPotion = 1;
+                                break;
                             case "Swift Potion":
-                                potionSlot1IsSwiftPotion = 1; break;
+                                potionSlot1IsSwiftPotion = 1;
+                                break;
                             case "Weak Potion":
-                                potionSlot1IsWeakPotion = 1; break;
+                                potionSlot1IsWeakPotion = 1;
+                                break;
                         }
                     case 2:
                         switch (p.potions.get(i).ID) {
                             case "Ancient Potion":
-                                potionSlot2IsAncientPotion = 1; break;
+                                potionSlot2IsAncientPotion = 1;
+                                break;
                             case "AttackPotion":
-                                potionSlot2IsAttackPotion = 1; break;
+                                potionSlot2IsAttackPotion = 1;
+                                break;
                             case "Block Potion":
-                                potionSlot2IsBlockPotion = 1; break;
+                                potionSlot2IsBlockPotion = 1;
+                                break;
                             case "BloodPotion":
-                                potionSlot2IsBloodPotion = 1; break;
+                                potionSlot2IsBloodPotion = 1;
+                                break;
                             case "Dexterity Potion":
-                                potionSlot2IsDexterityPotion = 1; break;
+                                potionSlot2IsDexterityPotion = 1;
+                                break;
                             case "Elixir":
-                                potionSlot2IsElixir = 1; break;
+                                potionSlot2IsElixir = 1;
+                                break;
                             case "Energy Potion":
-                                potionSlot2IsEnergyPotion = 1; break;
+                                potionSlot2IsEnergyPotion = 1;
+                                break;
                             case "EntropicBrew":
-                                potionSlot2IsEntropicBrew = 1; break;
+                                potionSlot2IsEntropicBrew = 1;
+                                break;
                             case "EssenceOfSteel":
-                                potionSlot2IsEssenceOfSteel = 1; break;
+                                potionSlot2IsEssenceOfSteel = 1;
+                                break;
                             case "Explosive Potion":
-                                potionSlot2IsExplosivePotion = 1; break;
+                                potionSlot2IsExplosivePotion = 1;
+                                break;
                             case "FairyPotion":
-                                potionSlot2IsFairyPotion = 1; break;
+                                potionSlot2IsFairyPotion = 1;
+                                break;
                             case "FearPotion":
-                                potionSlot2IsFearPotion = 1; break;
+                                potionSlot2IsFearPotion = 1;
+                                break;
                             case "Fire Potion":
-                                potionSlot2IsFirePotion = 1; break;
+                                potionSlot2IsFirePotion = 1;
+                                break;
                             case "FocusPotion":
-                                potionSlot2IsFocusPotion = 1; break;
+                                potionSlot2IsFocusPotion = 1;
+                                break;
                             case "Fruit Juice":
-                                potionSlot2IsFruitJuice = 1; break;
+                                potionSlot2IsFruitJuice = 1;
+                                break;
                             case "GamblersBrew":
-                                potionSlot2IsGamblersBrew = 1; break;
+                                potionSlot2IsGamblersBrew = 1;
+                                break;
                             case "GhostInAJar":
-                                potionSlot2IsGhostInAJar = 1; break;
+                                potionSlot2IsGhostInAJar = 1;
+                                break;
                             case "Health Potion":
-                                potionSlot2IsHealthPotion = 1; break;
+                                potionSlot2IsHealthPotion = 1;
+                                break;
                             case "LiquidBronze":
-                                potionSlot2IsLiquidBronze = 1; break;
+                                potionSlot2IsLiquidBronze = 1;
+                                break;
                             case "Poison Potion":
-                                potionSlot2IsPoisonPotion = 1; break;
+                                potionSlot2IsPoisonPotion = 1;
+                                break;
                             case "Potion Slot":
-                                potionSlot2IsPotionSlot = 1; break;
+                                potionSlot2IsPotionSlot = 1;
+                                break;
                             case "PowerPotion":
-                                potionSlot2IsPowerPotion = 1; break;
+                                potionSlot2IsPowerPotion = 1;
+                                break;
                             case "Regen Potion":
-                                potionSlot2IsRegenPotion = 1; break;
+                                potionSlot2IsRegenPotion = 1;
+                                break;
                             case "SkillPotion":
-                                potionSlot2IsSkillPotion = 1; break;
+                                potionSlot2IsSkillPotion = 1;
+                                break;
                             case "SmokeBomb":
-                                potionSlot2IsSmokeBomb = 1; break;
+                                potionSlot2IsSmokeBomb = 1;
+                                break;
                             case "SneckoOil":
-                                potionSlot2IsSneckoOil = 1; break;
+                                potionSlot2IsSneckoOil = 1;
+                                break;
                             case "SpeedPotion":
-                                potionSlot2IsSpeedPotion = 1; break;
+                                potionSlot2IsSpeedPotion = 1;
+                                break;
                             case "SteroidPotion":
-                                potionSlot2IsSteroidPotion = 1; break;
+                                potionSlot2IsSteroidPotion = 1;
+                                break;
                             case "Strength Potion":
-                                potionSlot2IsStrengthPotion = 1; break;
+                                potionSlot2IsStrengthPotion = 1;
+                                break;
                             case "Swift Potion":
-                                potionSlot2IsSwiftPotion = 1; break;
+                                potionSlot2IsSwiftPotion = 1;
+                                break;
                             case "Weak Potion":
-                                potionSlot2IsWeakPotion = 1; break;
+                                potionSlot2IsWeakPotion = 1;
+                                break;
                         }
                     case 3:
                         switch (p.potions.get(i).ID) {
                             case "Ancient Potion":
-                                potionSlot3IsAncientPotion = 1; break;
+                                potionSlot3IsAncientPotion = 1;
+                                break;
                             case "AttackPotion":
-                                potionSlot3IsAttackPotion = 1; break;
+                                potionSlot3IsAttackPotion = 1;
+                                break;
                             case "Block Potion":
-                                potionSlot3IsBlockPotion = 1; break;
+                                potionSlot3IsBlockPotion = 1;
+                                break;
                             case "BloodPotion":
-                                potionSlot3IsBloodPotion = 1; break;
+                                potionSlot3IsBloodPotion = 1;
+                                break;
                             case "Dexterity Potion":
-                                potionSlot3IsDexterityPotion = 1; break;
+                                potionSlot3IsDexterityPotion = 1;
+                                break;
                             case "Elixir":
-                                potionSlot3IsElixir = 1; break;
+                                potionSlot3IsElixir = 1;
+                                break;
                             case "Energy Potion":
-                                potionSlot3IsEnergyPotion = 1; break;
+                                potionSlot3IsEnergyPotion = 1;
+                                break;
                             case "EntropicBrew":
-                                potionSlot3IsEntropicBrew = 1; break;
+                                potionSlot3IsEntropicBrew = 1;
+                                break;
                             case "EssenceOfSteel":
-                                potionSlot3IsEssenceOfSteel = 1; break;
+                                potionSlot3IsEssenceOfSteel = 1;
+                                break;
                             case "Explosive Potion":
-                                potionSlot3IsExplosivePotion = 1; break;
+                                potionSlot3IsExplosivePotion = 1;
+                                break;
                             case "FairyPotion":
-                                potionSlot3IsFairyPotion = 1; break;
+                                potionSlot3IsFairyPotion = 1;
+                                break;
                             case "FearPotion":
-                                potionSlot3IsFearPotion = 1; break;
+                                potionSlot3IsFearPotion = 1;
+                                break;
                             case "Fire Potion":
-                                potionSlot3IsFirePotion = 1; break;
+                                potionSlot3IsFirePotion = 1;
+                                break;
                             case "FocusPotion":
-                                potionSlot3IsFocusPotion = 1; break;
+                                potionSlot3IsFocusPotion = 1;
+                                break;
                             case "Fruit Juice":
-                                potionSlot3IsFruitJuice = 1; break;
+                                potionSlot3IsFruitJuice = 1;
+                                break;
                             case "GamblersBrew":
-                                potionSlot3IsGamblersBrew = 1; break;
+                                potionSlot3IsGamblersBrew = 1;
+                                break;
                             case "GhostInAJar":
-                                potionSlot3IsGhostInAJar = 1; break;
+                                potionSlot3IsGhostInAJar = 1;
+                                break;
                             case "Health Potion":
-                                potionSlot3IsHealthPotion = 1; break;
+                                potionSlot3IsHealthPotion = 1;
+                                break;
                             case "LiquidBronze":
-                                potionSlot3IsLiquidBronze = 1; break;
+                                potionSlot3IsLiquidBronze = 1;
+                                break;
                             case "Poison Potion":
-                                potionSlot3IsPoisonPotion = 1; break;
+                                potionSlot3IsPoisonPotion = 1;
+                                break;
                             case "Potion Slot":
-                                potionSlot3IsPotionSlot = 1; break;
+                                potionSlot3IsPotionSlot = 1;
+                                break;
                             case "PowerPotion":
-                                potionSlot3IsPowerPotion = 1; break;
+                                potionSlot3IsPowerPotion = 1;
+                                break;
                             case "Regen Potion":
-                                potionSlot3IsRegenPotion = 1; break;
+                                potionSlot3IsRegenPotion = 1;
+                                break;
                             case "SkillPotion":
-                                potionSlot3IsSkillPotion = 1; break;
+                                potionSlot3IsSkillPotion = 1;
+                                break;
                             case "SmokeBomb":
-                                potionSlot3IsSmokeBomb = 1; break;
+                                potionSlot3IsSmokeBomb = 1;
+                                break;
                             case "SneckoOil":
-                                potionSlot3IsSneckoOil = 1; break;
+                                potionSlot3IsSneckoOil = 1;
+                                break;
                             case "SpeedPotion":
-                                potionSlot3IsSpeedPotion = 1; break;
+                                potionSlot3IsSpeedPotion = 1;
+                                break;
                             case "SteroidPotion":
-                                potionSlot3IsSteroidPotion = 1; break;
+                                potionSlot3IsSteroidPotion = 1;
+                                break;
                             case "Strength Potion":
-                                potionSlot3IsStrengthPotion = 1; break;
+                                potionSlot3IsStrengthPotion = 1;
+                                break;
                             case "Swift Potion":
-                                potionSlot3IsSwiftPotion = 1; break;
+                                potionSlot3IsSwiftPotion = 1;
+                                break;
                             case "Weak Potion":
-                                potionSlot3IsWeakPotion = 1; break;
+                                potionSlot3IsWeakPotion = 1;
+                                break;
                         }
                     case 4:
                         switch (p.potions.get(i).ID) {

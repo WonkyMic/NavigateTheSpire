@@ -14,7 +14,6 @@ import javax.ws.rs.core.Response;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class JsonDump {
@@ -245,7 +244,7 @@ public class JsonDump {
                 .setPrettyPrinting()
                 .create();
         String type = data.getClass().getSimpleName();
-        /*
+
         //TODO :: this should be the end of the method (with return)
         //return gson.toJson(dataDump)
 
@@ -257,7 +256,7 @@ public class JsonDump {
             e.printStackTrace();
         }
 
-        */
+
         //TODO :: move to another method or MachineLearningClient class
         String URL = "http://127.0.0.1:5000/navi/" + type + "test-endpoint";
         Client client = ClientBuilder.newClient();
