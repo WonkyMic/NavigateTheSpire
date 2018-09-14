@@ -7,7 +7,13 @@ import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.PotionHelper;
+import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import jsonUtil.JsonDump;
 import relics.AutoPlayRelic;
@@ -21,7 +27,7 @@ import java.util.UUID;
 
 @SpireInitializer
 public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, EditRelicsSubscriber, PostCreateStartingRelicsSubscriber, EditStringsSubscriber, PostDungeonInitializeSubscriber, PostDeathSubscriber, PostBattleSubscriber, OnStartBattleSubscriber {
-
+	Random generator = new Random();
 
     public DevTheSpire(){
         //Use this for when you subscribe to any hooks offered by BaseMod.
@@ -101,16 +107,110 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 
 	@Override
 	public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-    	//Randomly add a card to the deck at the start of combat. This will allow us to emulate new combats and let the AI learn multiple combinations of things.
-		//TODO: Force card to be from same class, UNLESS player has the prismatic relic.
-		//TODO: Randomly add potions
-		//TODO: Randomly add relics
-		Random generator = new Random();
-		Object[] values = BaseMod.underScoreCardIDs.values().toArray();
-		Object randomValue = values[generator.nextInt(values.length)];
-		System.out.println("Adding card " + (String)randomValue);
+    	//Randomly add and remove random cards/potions/relics/curses at the start of combat. This will allow us to emulate new combats and let the AI learn multiple combinations of things.
+		//Need to randomize if each of these is called and how many times.
+		addRandomCard();
+		addRandomRelic();
+		addRandomPotion();
+		addRandomCurse();
+		removeRandomRelic();
+		removeRandomCard();
+		removeRandomPotion();
+	}
+
+	public void addRandomCard(){
+		boolean hasPrismaticShard = false;
+		AbstractCard card;
+		AbstractCard.CardRarity[] cardRarities = AbstractCard.CardRarity.values();
+		AbstractCard.CardColor[] cardColors = AbstractCard.CardColor.values();
+		if (AbstractDungeon.player.hasRelic("PrismaticShard")){
+			hasPrismaticShard = true;
+		}
+		com.megacrit.cardcrawl.random.Random gen = new com.megacrit.cardcrawl.random.Random();
+		if (!hasPrismaticShard){
+			card = CardLibrary.getColorSpecificCard(AbstractDungeon.player.chosenClass, gen);
+		}
+		else {
+			AbstractCard.CardRarity randomRarity = cardRarities[generator.nextInt(cardRarities.length-1)];
+			card = CardLibrary.getAnyColorCard(randomRarity);
+		}
+		System.out.println("Adding card " + card.cardID);
 		boolean toUpgrade = generator.nextBoolean();
 		System.out.println("Is it gonna be upgraded? " + toUpgrade);
-		CardActions.AddCard((String)randomValue, toUpgrade);
+		CardActions.AddCard(card.cardID, toUpgrade);
 	}
+
+	public void removeRandomCard(){
+		AbstractCard cardToRemove = AbstractDungeon.player.masterDeck.group.get(generator.nextInt(AbstractDungeon.player.masterDeck.group.size()-1));
+		while (cardToRemove.cardID == "AscendersBane" || cardToRemove.cardID == "Necronomicurse"){
+			cardToRemove = AbstractDungeon.player.masterDeck.group.get(generator.nextInt(AbstractDungeon.player.masterDeck.group.size()-1));
+		}
+		AbstractDungeon.player.masterDeck.group.remove(cardToRemove);
+	}
+
+	public void addRandomRelic(){
+		AbstractRelic.RelicTier[] relicTiers = AbstractRelic.RelicTier.values();
+		AbstractRelic.RelicTier randomTier = relicTiers[generator.nextInt(relicTiers.length-1)];
+		String relicToAdd = "None";
+		int relicIndexToGet = 0;
+		switch (randomTier){
+			case BOSS:
+				relicToAdd = AbstractDungeon.bossRelicPool.get(relicIndexToGet);
+				AbstractDungeon.bossRelicPool.remove(relicIndexToGet);
+				break;
+			case RARE:
+				relicToAdd = AbstractDungeon.rareRelicPool.get(relicIndexToGet);
+				AbstractDungeon.rareRelicPool.remove(relicIndexToGet);
+				break;
+			case UNCOMMON:
+				relicToAdd = AbstractDungeon.uncommonRelicPool.get(relicIndexToGet);
+				AbstractDungeon.uncommonRelicPool.remove(relicIndexToGet);
+				break;
+			case COMMON:
+				relicToAdd = AbstractDungeon.commonRelicPool.get(relicIndexToGet);
+				AbstractDungeon.commonRelicPool.remove(relicIndexToGet);
+				break;
+			case SHOP:
+				relicToAdd = AbstractDungeon.shopRelicPool.get(relicIndexToGet);
+				AbstractDungeon.shopRelicPool.remove(relicIndexToGet);
+				break;
+			case SPECIAL:
+				break;
+			default:
+				break;
+		}
+		if(!"None".equals(relicToAdd)) {
+			AbstractDungeon.player.getRelic(relicToAdd);
+		}
+		else{
+			System.out.println("Not adding relic.");
+		}
+	}
+
+	public void removeRandomRelic(){
+    	AbstractRelic relicToRemove = AbstractDungeon.player.relics.get(generator.nextInt(AbstractDungeon.player.relics.size()-3)+2); //don't remove first two relics??
+		AbstractDungeon.player.relics.remove(relicToRemove);
+	}
+
+	public void addRandomPotion(){
+    	int slotToAdd = 0;
+		for ( AbstractPotion potion : AbstractDungeon.player.potions) {
+			if ("Potion Slot".equalsIgnoreCase(potion.name)) {
+				slotToAdd = potion.slot;
+			}
+		}
+		AbstractPotion potion = PotionHelper.getRandomPotion();
+		AbstractDungeon.player.obtainPotion(slotToAdd, potion);
+	}
+
+	public void removeRandomPotion(){
+		AbstractPotion potionToRemove = AbstractDungeon.player.potions.get(generator.nextInt(AbstractDungeon.player.potions.size()-1)); //don't remove first two relics??
+		AbstractDungeon.player.potions.remove(potionToRemove);
+	}
+
+	public void addRandomCurse(){
+		AbstractCard card = CardLibrary.getCurse();
+		CardActions.AddCard(card.cardID, false);
+	}
+
 }
