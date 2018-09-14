@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import jsonUtil.JsonDump;
 import powers.AutoPlayFormPower;
+
 
 public class AutoPlayRelic extends CustomRelic {
     public static final String ID = "Navi";

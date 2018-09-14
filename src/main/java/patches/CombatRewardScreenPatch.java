@@ -1,11 +1,16 @@
 package patches;
 
+import basemod.BaseMod;
+import botActions.CardActions;
+import botActions.CombatActions;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 import jsonUtil.JsonDump;
+
+import java.util.Random;
 
 @SpirePatch(
         cls="com.megacrit.cardcrawl.screens.CombatRewardScreen",
@@ -590,6 +595,10 @@ public class CombatRewardScreenPatch {
         }
 
         rewardsFinished = true;
+
+        //Start the fight at the front of the monster list (current fight)
+        //TODO: Randomly choose fight to start
+        CombatActions.StartFight(AbstractDungeon.monsterList.get(0));
 
         if(AbstractDungeon.getCurrRoom().getMapSymbol() != "B")
         {
