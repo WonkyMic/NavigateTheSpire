@@ -1,6 +1,10 @@
 package jsonUtil;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.RelicLibrary;
+
+import java.util.Iterator;
 
 public class JsonCard {
     //CARDS
@@ -1254,7 +1258,40 @@ public class JsonCard {
         baseHeal = c.baseHeal;
         upgraded = (c.upgraded) ? 1 : 0;
         exhaust = (c.exhaust) ? 1 : 0;
-        isPlayable = (c.hasEnoughEnergy()) ? 1 : 0;
+        if(c.type == AbstractCard.CardType.CURSE)
+        {
+            if (AbstractDungeon.player.hasRelic("Blue Candle")) {
+                isPlayable = 1;
+            }
+            else {
+                isPlayable = 0;
+            }
+        }
+        else if (c.type == AbstractCard.CardType.STATUS)
+        {
+            if (AbstractDungeon.player.hasRelic("Medical Kit")) {
+                isPlayable = 1;
+            }
+            else {
+                isPlayable = 0;
+            }
+        }
+        else if(c.cardID == "Clash") {
+            for (final AbstractCard c1 : AbstractDungeon.player.hand.group) {
+                if (c1.type != AbstractCard.CardType.ATTACK) {
+                    isPlayable = 0;
+                }
+                else {
+                    isPlayable = (c.hasEnoughEnergy()) ? 1 : 0;
+                }
+            }
+        }
+        else {
+            isPlayable = (c.hasEnoughEnergy()) ? 1 : 0;
+        }
+        if(isPlayable == 1 && AbstractDungeon.player.hasRelic("Velvet Choker")){
+            isPlayable = AbstractDungeon.player.relics.get(AbstractDungeon.player.relics.indexOf(RelicLibrary.getRelic("Velvet Choker"))).canPlay(c) ? 1 : 0;
+        }
     }
 
 }

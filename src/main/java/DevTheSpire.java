@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
@@ -51,13 +52,7 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 
 	@Override
 	public void receiveCardUsed(AbstractCard arg0) {
-		/*
-		//TODO :: remove health logic
-		if ( AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth )
-		{
-			AbstractDungeon.player.currentHealth = AbstractDungeon.player.maxHealth;
-		}
-		*/
+
 	}
 
 
@@ -109,13 +104,39 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 	public void receiveOnBattleStart(AbstractRoom abstractRoom) {
     	//Randomly add and remove random cards/potions/relics/curses at the start of combat. This will allow us to emulate new combats and let the AI learn multiple combinations of things.
 		//Need to randomize if each of these is called and how many times.
-		addRandomCard();
-		addRandomRelic();
-		addRandomPotion();
-		addRandomCurse();
-		removeRandomRelic();
-		removeRandomCard();
-		removeRandomPotion();
+		if ( AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth )
+		{
+			AbstractDungeon.player.currentHealth = AbstractDungeon.player.maxHealth;
+		}
+		changeRandomThings();
+	}
+
+	public void changeRandomThings(){
+		int rand = generator.nextInt(99);
+		if (rand <= 0){ //1% chance to remove a relic
+			removeRandomRelic();
+		}
+		else if (rand <= 5){ //5% chance to add a relic
+			addRandomRelic();
+		}
+		else if (rand <= 6){ //1% chance to remove a card
+			removeRandomCard();
+		}
+		else if (rand <= 26){ //20% chance to add a card
+			addRandomCard();
+		}
+		else if (rand <= 27){ //1% chance to add a curse
+			addRandomCurse();
+		}
+		else if (rand <= 28){ //1% chance to remove a potion
+			removeRandomPotion();
+		}
+		else if (rand <= 38){ //10% chance to add a potion
+			addRandomPotion();
+		}
+		else { //61% chance that nothing changes
+			System.out.println("Changing nothing.");
+		}
 	}
 
 	public void addRandomCard(){
@@ -180,7 +201,8 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 				break;
 		}
 		if(!"None".equals(relicToAdd)) {
-			AbstractDungeon.player.getRelic(relicToAdd);
+			System.out.println("Adding relic: " + relicToAdd);
+			AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2), RelicLibrary.getRelic(relicToAdd).makeCopy());
 		}
 		else{
 			System.out.println("Not adding relic.");
@@ -188,19 +210,32 @@ public class DevTheSpire implements  EditCardsSubscriber, OnCardUseSubscriber, E
 	}
 
 	public void removeRandomRelic(){
-    	AbstractRelic relicToRemove = AbstractDungeon.player.relics.get(generator.nextInt(AbstractDungeon.player.relics.size()-3)+2); //don't remove first two relics??
-		AbstractDungeon.player.relics.remove(relicToRemove);
+    	if (AbstractDungeon.player.relics.size() > 2) {
+    		int relicToRemoveIndex = generator.nextInt(AbstractDungeon.player.relics.size());
+			if (relicToRemoveIndex <= 1)
+			{
+				System.out.println("Not removing a relic.");
+			}
+			else
+			{
+				AbstractRelic relicToRemove = AbstractDungeon.player.relics.get(relicToRemoveIndex); //don't remove first two relics??
+				AbstractDungeon.player.relics.remove(relicToRemove);
+			}
+		}
 	}
 
 	public void addRandomPotion(){
     	int slotToAdd = 0;
-		for ( AbstractPotion potion : AbstractDungeon.player.potions) {
-			if ("Potion Slot".equalsIgnoreCase(potion.name)) {
-				slotToAdd = potion.slot;
+			while (!"Potion Slot".equalsIgnoreCase(AbstractDungeon.player.potions.get(slotToAdd).name)) {
+				slotToAdd++;
 			}
-		}
-		AbstractPotion potion = PotionHelper.getRandomPotion();
-		AbstractDungeon.player.obtainPotion(slotToAdd, potion);
+			if(slotToAdd < AbstractDungeon.player.potionSlots) {
+				AbstractPotion potion = PotionHelper.getRandomPotion();
+				AbstractDungeon.player.obtainPotion(slotToAdd, potion);
+			}
+			else {
+				System.out.println("Not adding potion.");
+			}
 	}
 
 	public void removeRandomPotion(){

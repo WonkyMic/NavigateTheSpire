@@ -46,4 +46,12 @@ public class AutoPlayRelic extends CustomRelic {
         System.out.println("atTurnStartPostDraw From Relic");
         AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
     }
+
+    @Override
+    public void onUsePotion()
+    {
+        //TODO: Check if in combat first
+        System.out.println("onUsePotion From Relic");
+        AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
+    }
 }

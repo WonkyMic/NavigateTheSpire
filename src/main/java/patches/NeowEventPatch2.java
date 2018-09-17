@@ -2,14 +2,12 @@ package patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.events.AbstractEvent;
-import com.megacrit.cardcrawl.events.city.*;
 import com.megacrit.cardcrawl.neow.NeowEvent;
-import com.megacrit.cardcrawl.neow.NeowReward;
 import jsonUtil.JsonDump;
 
-@SpirePatch(clz= NeowEvent.class, method="buttonEffect", paramtypez = {int.class})
-public class NeowEventPatches {
-    public static void Postfix(NeowEvent event, int i) {
+@SpirePatch(clz= NeowEvent.class, method=SpirePatch.CONSTRUCTOR, paramtypez = {boolean.class})
+public class NeowEventPatch2 {
+    public static void Postfix(AbstractEvent event, boolean isDone) {
         //JsonDump jsonDump = new JsonDump();
         //jsonDump.createEventJson();
 

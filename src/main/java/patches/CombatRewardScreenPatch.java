@@ -598,6 +598,7 @@ public class CombatRewardScreenPatch {
 
         //Start the fight at the front of the monster list (current fight)
         //TODO: Randomly choose fight to start
+        //TODO: Send update to Python that a new fight is starting
         CombatActions.StartFight(AbstractDungeon.monsterList.get(0));
 
         if(AbstractDungeon.getCurrRoom().getMapSymbol() != "B")
