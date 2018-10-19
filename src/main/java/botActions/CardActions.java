@@ -24,6 +24,19 @@ public class CardActions {
                 AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(copy, 1, true, false));
             }
     }
+    public static void AddCard2(String cardName, boolean upgrade){
+
+
+        AbstractCard c = CardLibrary.getCard(cardName);
+        if (c != null) {
+            AbstractCard copy = c.makeCopy();
+            if(upgrade) {
+                copy.upgrade();
+            }
+            UnlockTracker.markCardAsSeen(copy.cardID);
+            AbstractDungeon.player.masterDeck.group.add(c);
+        }
+    }
     public static void RemoveCard(String cardName) {
         AbstractDungeon.player.masterDeck.removeCard(cardName);
     }

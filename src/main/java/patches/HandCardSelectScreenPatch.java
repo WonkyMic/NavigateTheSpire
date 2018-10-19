@@ -23,17 +23,17 @@ import java.lang.reflect.Method;
 public class HandCardSelectScreenPatch {
     public static void Postfix (HandCardSelectScreen screen, String msg, int amount, boolean anyNumber, boolean canPickZero, boolean forTransform, boolean forUpgrade, boolean upTo)
     {
-        for (int i = 0; i < screen.numCardsToSelect ; i++) {
-            screen.hoveredCard = AbstractDungeon.player.hand.group.get(0);
+        if(!canPickZero) {
+            for (int i = 0; i < screen.numCardsToSelect; i++) {
+                screen.hoveredCard = AbstractDungeon.player.hand.group.get(0);
 
-            try {
-                Method m = HandCardSelectScreen.class.getDeclaredMethod("selectHoveredCard");
-                m.setAccessible(true);
-                m.invoke(screen);
-            }
-            catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e)
-            {
-                e.printStackTrace();
+                try {
+                    Method m = HandCardSelectScreen.class.getDeclaredMethod("selectHoveredCard");
+                    m.setAccessible(true);
+                    m.invoke(screen);
+                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
             }
         }
         screen.button.hb.clicked = true;

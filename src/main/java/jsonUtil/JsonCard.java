@@ -1277,19 +1277,17 @@ public class JsonCard {
             }
         }
         else if(c.cardID == "Clash") {
+            isPlayable = (c.hasEnoughEnergy()) ? 1 : 0;
             for (final AbstractCard c1 : AbstractDungeon.player.hand.group) {
                 if (c1.type != AbstractCard.CardType.ATTACK) {
                     isPlayable = 0;
-                }
-                else {
-                    isPlayable = (c.hasEnoughEnergy()) ? 1 : 0;
                 }
             }
         }
         else {
             isPlayable = (c.hasEnoughEnergy()) ? 1 : 0;
         }
-        if(isPlayable == 1 && AbstractDungeon.player.hasRelic("Velvet Choker")){
+        if(isPlayable == 1 && AbstractDungeon.player.hasRelic("Velvet Choker") && AbstractDungeon.player.relics.indexOf(RelicLibrary.getRelic("Velvet Choker")) >= 0){
             isPlayable = AbstractDungeon.player.relics.get(AbstractDungeon.player.relics.indexOf(RelicLibrary.getRelic("Velvet Choker"))).canPlay(c) ? 1 : 0;
         }
     }

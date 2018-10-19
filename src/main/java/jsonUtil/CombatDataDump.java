@@ -28,6 +28,8 @@ public class CombatDataDump extends AbstractDataDump{
     ArrayList<JsonCard> jsonCardArrayListDiscardPile = new ArrayList<JsonCard>();
     ArrayList<JsonCard> jsonCardArrayListDrawPile = new ArrayList<JsonCard>();
     int orbSlots;
+    int numCardsPlayedThisTurn = 0;
+    int numCardsDoubledThisTurn = 0;
 
     //monster information
     ArrayList<JsonEnemy> jsonEnemyArrayList = new ArrayList<JsonEnemy>();
@@ -476,7 +478,12 @@ public class CombatDataDump extends AbstractDataDump{
             ArrayList<AbstractMonster> enemies = AbstractDungeon.getCurrRoom().monsters.monsters;
             for (int i = 0; i < enemies.size(); i++) {
                 AbstractMonster enemy = enemies.get(i);
-                jsonEnemyArrayList.set(i, new JsonEnemy(enemy));
+                if(i <= 4) {
+                    jsonEnemyArrayList.set(i, new JsonEnemy(enemy));
+                }
+                else{
+                    System.out.println("*** MONSTER ROOM WITH MORE THAN 5 ENEMIES: " + AbstractDungeon.getCurrRoom().monsters.getMonsterNames());
+                }
             }
         }
 
@@ -590,6 +597,15 @@ public class CombatDataDump extends AbstractDataDump{
                     break;
                 case "Echo Form":
                     countEchoForm = power.amount;
+                    Class<?> c = power.getClass();
+                    try {
+                        Field f = c.getDeclaredField("cardsDoubledThisTurn");
+                        f.setAccessible(true);
+                        numCardsDoubledThisTurn = (int) f.get(power);
+                    }
+                    catch (IllegalAccessException | NoSuchFieldException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case "Electro":
                     countElectro = power.amount;
@@ -878,6 +894,8 @@ public class CombatDataDump extends AbstractDataDump{
                     break;
             }
         }
+
+        numCardsPlayedThisTurn = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
     }
 
 }

@@ -203,6 +203,9 @@ public class JsonDump {
     public static UUID gameID;
     public static int currentStateID;
 
+
+    public static transient boolean changeThings = false;
+
     public void createStateJson()
     {
         StateDataDump data = new StateDataDump();
@@ -247,7 +250,7 @@ public class JsonDump {
 
         //TODO :: this should be the end of the method (with return)
         //return gson.toJson(dataDump)
-
+        /*
         try {
             Writer writer = new FileWriter("C:\\Users\\Hafez\\IdeaProjects\\NavigateTheSpire\\json\\" + type + "jsonDump.json");
             writer.write(gson.toJson(data));
@@ -255,6 +258,7 @@ public class JsonDump {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
 
 
         //TODO :: move to another method or MachineLearningClient class
@@ -298,6 +302,8 @@ public class JsonDump {
         //TODO :: this should be the end of the method (with return)
         //return gson.toJson(dataDump)
         String type = data.getClass().getSimpleName();
+
+        /*
         try {
             Writer writer = new FileWriter("C:\\Users\\Hafez\\IdeaProjects\\NavigateTheSpire\\json\\" + type + "jsonDump.json");
             writer.write(gson.toJson(data));
@@ -305,6 +311,7 @@ public class JsonDump {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
 
         //TODO :: move to another method or MachineLearningClient class
         String URL = "http://127.0.0.1:5000/navi/" + type + "test-endpoint";

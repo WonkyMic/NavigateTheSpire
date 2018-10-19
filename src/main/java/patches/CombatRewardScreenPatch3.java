@@ -1,7 +1,5 @@
 package patches;
 
-import basemod.BaseMod;
-import botActions.CardActions;
 import botActions.CombatActions;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.google.gson.JsonObject;
@@ -18,16 +16,15 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Random;
 
 @SpirePatch(
         clz=CombatRewardScreen.class,
-        method="open",
-        paramtypez={}
+        method="openCombat",
+        paramtypez={String.class, boolean.class}
 )
-public class CombatRewardScreenPatch {
+public class CombatRewardScreenPatch3 {
     public static boolean rewardsFinished = false;
-    public static void Postfix (CombatRewardScreen screen) {
+    public static void Postfix (CombatRewardScreen screen, String s1, boolean b1) {
         //TODO: send state to RL
 
         rewardsFinished = false;

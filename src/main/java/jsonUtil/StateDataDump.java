@@ -435,11 +435,11 @@ public class StateDataDump extends AbstractDataDump {
     int potionSlot2IsPoisonPotion = 0;
     int potionSlot3IsPoisonPotion = 0;
     int potionSlot4IsPoisonPotion = 0;
-    int potionSlot0IsPotionSlot = 0;
-    int potionSlot1IsPotionSlot = 0;
-    int potionSlot2IsPotionSlot = 0;
-    int potionSlot3IsPotionSlot = 0;
-    int potionSlot4IsPotionSlot = 0;
+    int potionSlot0IsPotionSlot = 1;
+    int potionSlot1IsPotionSlot = 1;
+    int potionSlot2IsPotionSlot = 1;
+    int potionSlot3IsPotionSlot = 1;
+    int potionSlot4IsPotionSlot = 1;
     int potionSlot0IsPowerPotion = 0;
     int potionSlot1IsPowerPotion = 0;
     int potionSlot2IsPowerPotion = 0;
@@ -860,6 +860,188 @@ public class StateDataDump extends AbstractDataDump {
     int hasMawBank = 0;
 
 
+    int countAnchor = -1;
+    int countAncientTeaSet = -1;
+    int countArtofWar = -1;
+    int countAstrolabe = -1;
+    int countBagofMarbles = -1;
+    int countBagofPreparation = -1;
+    int countBirdFacedUrn = -1;
+    int countBlackBlood = -1;
+    int countBlackStar = -1;
+    int countBloodVial = -1;
+    int countBloodyIdol = -1;
+    int countBlueCandle = -1;
+    int countBottledFlame = -1;
+    int countBottledLightning = -1;
+    int countBottledTornado = -1;
+    int countBronzeScales = -1;
+    int countBurningBlood = -1;
+    int countCables = -1;
+    int countCalipers = -1;
+    int countCallingBell = -1;
+    int countCauldron = -1;
+    int countCentennialPuzzle = -1;
+    int countChameleonRing = -1;
+    int countChampionBelt = -1;
+    int countCharonsAshes = -1;
+    int countChemicalX = -1;
+    int countCirclet = -1;
+    int countCrackedCore = -1;
+    int countFrozenCore = -1;
+    int countCursedKey = -1;
+    int countDarkstonePeriapt = -1;
+    int countDataDisk = -1;
+    int countDeadBranch = -1;
+    int countDerpRock = -1;
+    int countDiscerningMonocle = -1;
+    int countDodecahedron = -1;
+    int countDreamCatcher = -1;
+    int countDuVuDoll = -1;
+    int countEctoplasm = -1;
+    int countEmotionChip = -1;
+    int countEnchiridion = -1;
+    int countEternalFeather = -1;
+    int countFrozenEgg = -1;
+    int countFrozenEgg2 = -1;
+    int countFrozenEye = -1;
+    int countGamblingChip = -1;
+    int countGinger = -1;
+    int countGirya = -1;
+    int countGoldenIdol = -1;
+    int countGremlinHorn = -1;
+    int countHappyFlower = -1;
+    int countIceCream = -1;
+    int countInserter = -1;
+    int countJuzuBracelet = -1;
+    int countKunai = -1;
+    int countLantern = -1;
+    int countLeesWaffle = -1;
+    int countLetterOpener = -1;
+    int countLivingBlade = -1;
+    int countLizardTail = -1;
+    int countMagicFlower = -1;
+    int countMango = -1;
+    int countMarkofPain = -1;
+    int countMatryoshka = -1;
+    int countMeatontheBone = -1;
+    int countMedicalKit = -1;
+    int countMembershipCard = -1;
+    int countMercuryHourglass = -1;
+    int countMoltenEgg = -1;
+    int countMoltenEgg2 = -1;
+    int countMummifiedHand = -1;
+    int countNecronomicon = -1;
+    int countNeowsBlessing = -1;
+    int countNilrysCodex = -1;
+    int countNineLives = -1;
+    int countNinjaScroll = -1;
+    int countNlothsGift = -1;
+    int countNuclearBattery = -1;
+    int countNullstonePeriapt = -1;
+    int countOddMushroom = -1;
+    int countOddlySmoothStone = -1;
+    int countOldCoin = -1;
+    int countOmamori = -1;
+    int countOrichalcum = -1;
+    int countOrnamentalFan = -1;
+    int countOrrery = -1;
+    int countPandorasBox = -1;
+    int countPantograph = -1;
+    int countPaperCrane = -1;
+    int countPaperFrog = -1;
+    int countPeacePipe = -1;
+    int countPear = -1;
+    int countPenNib = -1;
+    int countPhilosophersStone = -1;
+    int countPotionBelt = -1;
+    int countPrayerWheel = -1;
+    int countQuestionCard = -1;
+    int countRedCirclet = -1;
+    int countRedMask = -1;
+    int countRedSkull = -1;
+    int countRegalPillow = -1;
+    int countRingoftheSerpent = -1;
+    int countRingoftheSnake = -1;
+    int countRunicCapacitor = -1;
+    int countRunicCube = -1;
+    int countRunicDome = -1;
+    int countRunicPyramid = -1;
+    int countSelfFormingClay = -1;
+    int countShovel = -1;
+    int countShuriken = -1;
+    int countSingingBowl = -1;
+    int countSmilingMask = -1;
+    int countSnakeSkull = -1;
+    int countSneckoEye = -1;
+    int countSozu = -1;
+    int countSpiritPoop = -1;
+    int countStrangeSpoon = -1;
+    int countStrawberry = -1;
+    int countSundial = -1;
+    int countSymbioticVirus = -1;
+    int countTest1 = -1;
+    int countTest2 = -1;
+    int countTest3 = -1;
+    int countTest4 = -1;
+    int countTest5 = -1;
+    int countTest6 = -1;
+    int countTest7 = -1;
+    int countTest8 = -1;
+    int countTheCourier = -1;
+    int countTheSpecimen = -1;
+    int countThreadandNeedle = -1;
+    int countTingsha = -1;
+    int countTinyChest = -1;
+    int countTinyHouse = -1;
+    int countToolbox = -1;
+    int countTorii = -1;
+    int countToughBandages = -1;
+    int countToxicEgg = -1;
+    int countToxicEgg2 = -1;
+    int countToyOrnithopter = -1;
+    int countTurnip = -1;
+    int countUnceasingTop = -1;
+    int countVajra = -1;
+    int countVelvetChoker = -1;
+    int countWarPaint = -1;
+    int countWhetstone = -1;
+    int countWhiteBeastStatue = -1;
+    int countBoot = -1;
+    int countMarkoftheBloom = -1;
+    int countBustedCrown = -1;
+    int countIncenseBurner = -1;
+    int countEmptyCage = -1;
+    int countFusionHammer = -1;
+    int countCoffeeDripper = -1;
+    int countSsserpentHead = -1;
+    int countMutagenicStrength = -1;
+    int countFaceOfCleric = -1;
+    int countNlothsMask = -1;
+    int countGremlinMask = -1;
+    int countCultistMask = -1;
+    int countTheAbacus = -1;
+    int countDollysMirror = -1;
+    int countClockworkSouvenir = -1;
+    int countMealTicket = -1;
+    int countTwistedFunnel = -1;
+    int countHandDrill = -1;
+    int countHoveringKite = -1;
+    int countSling = -1;
+    int countOrangePellets = -1;
+    int countWristBlade = -1;
+    int countStoneCalendar = -1;
+    int countNunchaku = -1;
+    int countBrimstone = -1;
+    int countPreservedInsect = -1;
+    int countPocketwatch = -1;
+    int countFossilizedHelix = -1;
+    int countPrismaticShard = -1;
+    int countWarpedTongs = -1;
+    int countWingedGreaves = -1;
+    int countMawBank = -1;
+
+
 
 
     public void updateStateDataForJson() {
@@ -893,8 +1075,8 @@ public class StateDataDump extends AbstractDataDump {
                     break;
             }
         }
-        MapUtil mUtil = new MapUtil();
-        availablePathArrayList = mUtil.createAvailablePathArrayList(AbstractDungeon.getCurrMapNode());
+        //MapUtil mUtil = new MapUtil();
+        //availablePathArrayList = mUtil.createAvailablePathArrayList(AbstractDungeon.getCurrMapNode());
 
         AbstractPlayer p = AbstractDungeon.player;
 
@@ -1915,7 +2097,11 @@ public class StateDataDump extends AbstractDataDump {
                             case "Weak Potion":
                                 potionSlot0IsWeakPotion = 1;
                                 break;
+                            default:
+                                potionSlot0IsPotionSlot = 1;
+                                break;
                         }
+                        break;
                     case 1:
                         switch (p.potions.get(i).ID) {
                             case "Ancient Potion":
@@ -2011,7 +2197,11 @@ public class StateDataDump extends AbstractDataDump {
                             case "Weak Potion":
                                 potionSlot1IsWeakPotion = 1;
                                 break;
+                            default:
+                                potionSlot1IsPotionSlot = 1;
+                                break;
                         }
+                        break;
                     case 2:
                         switch (p.potions.get(i).ID) {
                             case "Ancient Potion":
@@ -2107,7 +2297,11 @@ public class StateDataDump extends AbstractDataDump {
                             case "Weak Potion":
                                 potionSlot2IsWeakPotion = 1;
                                 break;
+                            default:
+                                potionSlot2IsPotionSlot = 1;
+                                break;
                         }
+                        break;
                     case 3:
                         switch (p.potions.get(i).ID) {
                             case "Ancient Potion":
@@ -2203,7 +2397,11 @@ public class StateDataDump extends AbstractDataDump {
                             case "Weak Potion":
                                 potionSlot3IsWeakPotion = 1;
                                 break;
+                            default:
+                                potionSlot3IsPotionSlot = 1;
+                                break;
                         }
+                        break;
                     case 4:
                         switch (p.potions.get(i).ID) {
                             case "Ancient Potion":
@@ -2299,7 +2497,11 @@ public class StateDataDump extends AbstractDataDump {
                             case "Weak Potion":
                                 potionSlot4IsWeakPotion = 1;
                                 break;
+                            default:
+                                potionSlot4IsPotionSlot = 1;
+                                break;
                         }
+                        break;
                 }
             }
         }
@@ -2494,543 +2696,723 @@ public class StateDataDump extends AbstractDataDump {
             switch(relic.relicId) {
                 case "Anchor":
                     hasAnchor = 1;
+                    countAnchor = relic.counter;
                     break;
                 case "Ancient Tea Set":
                     hasAncientTeaSet = 1;
+                    countAncientTeaSet = relic.counter;
                     break;
                 case "Art of War":
                     hasArtofWar = 1;
+                    countArtofWar = relic.counter;
                     break;
                 case "Astrolabe":
                     hasAstrolabe = 1;
+                    countAstrolabe = relic.counter;
                     break;
                 case "Bag of Marbles":
                     hasBagofMarbles = 1;
+                    countBagofMarbles = relic.counter;
                     break;
                 case "Bag of Preparation":
                     hasBagofPreparation = 1;
+                    countBagofPreparation = relic.counter;
                     break;
                 case "Bird Faced Urn":
                     hasBirdFacedUrn = 1;
+                    countBirdFacedUrn = relic.counter;
                     break;
                 case "Black Blood":
                     hasBlackBlood = 1;
+                    countBlackBlood = relic.counter;
                     break;
                 case "Black Star":
                     hasBlackStar = 1;
+                    countBlackStar = relic.counter;
                     break;
                 case "Blood Vial":
                     hasBloodVial = 1;
+                    countBloodVial = relic.counter;
                     break;
                 case "Bloody Idol":
                     hasBloodyIdol = 1;
+                    countBloodyIdol = relic.counter;
                     break;
                 case "Blue Candle":
                     hasBlueCandle = 1;
+                    countBlueCandle = relic.counter;
                     break;
                 case "Bottled Flame":
                     hasBottledFlame = 1;
+                    countBottledFlame = relic.counter;
                     break;
                 case "Bottled Lightning":
                     hasBottledLightning = 1;
+                    countBottledLightning = relic.counter;
                     break;
                 case "Bottled Tornado":
                     hasBottledTornado = 1;
+                    countBottledTornado = relic.counter;
                     break;
                 case "Bronze Scales":
                     hasBronzeScales = 1;
+                    countBronzeScales = relic.counter;
                     break;
                 case "Burning Blood":
                     hasBurningBlood = 1;
+                    countBurningBlood = relic.counter;
                     break;
                 case "Cables":
                     hasCables = 1;
+                    countCables = relic.counter;
                     break;
                 case "Calipers":
                     hasCalipers = 1;
+                    countCalipers = relic.counter;
                     break;
                 case "Calling Bell":
                     hasCallingBell = 1;
+                    countCallingBell = relic.counter;
                     break;
                 case "Cauldron":
                     hasCauldron = 1;
+                    countCauldron = relic.counter;
                     break;
                 case "Centennial Puzzle":
                     hasCentennialPuzzle = 1;
+                    countCentennialPuzzle = relic.counter;
                     break;
                 case "Chameleon Ring":
                     hasChameleonRing = 1;
+                    countChameleonRing = relic.counter;
                     break;
                 case "Champion Belt":
                     hasChampionBelt = 1;
+                    countChampionBelt = relic.counter;
                     break;
                 case "Charon's Ashes":
                     hasCharonsAshes = 1;
+                    countCharonsAshes = relic.counter;
                     break;
                 case "Chemical X":
                     hasChemicalX = 1;
+                    countChemicalX = relic.counter;
                     break;
                 case "Circlet":
                     hasCirclet = 1;
+                    countCirclet = relic.counter;
                     break;
                 case "Cracked Core":
                     hasCrackedCore = 1;
+                    countCrackedCore = relic.counter;
                     break;
                 case "FrozenCore":
                     hasFrozenCore = 1;
+                    countFrozenCore = relic.counter;
                     break;
                 case "Cursed Key":
                     hasCursedKey = 1;
+                    countCursedKey = relic.counter;
                     break;
                 case "Darkstone Periapt":
                     hasDarkstonePeriapt = 1;
+                    countDarkstonePeriapt = relic.counter;
                     break;
                 case "DataDisk":
                     hasDataDisk = 1;
+                    countDataDisk = relic.counter;
                     break;
                 case "Dead Branch":
                     hasDeadBranch = 1;
+                    countDeadBranch = relic.counter;
                     break;
                 case "Derp Rock":
                     hasDerpRock = 1;
+                    countDerpRock = relic.counter;
                     break;
                 case "Discerning Monocle":
                     hasDiscerningMonocle = 1;
+                    countDiscerningMonocle = relic.counter;
                     break;
                 case "Dodecahedron":
                     hasDodecahedron = 1;
+                    countDodecahedron = relic.counter;
                     break;
                 case "Dream Catcher":
                     hasDreamCatcher = 1;
+                    countDreamCatcher = relic.counter;
                     break;
                 case "Du-Vu Doll":
                     hasDuVuDoll = 1;
+                    countDuVuDoll = relic.counter;
                     break;
                 case "Ectoplasm":
                     hasEctoplasm = 1;
+                    countEctoplasm = relic.counter;
                     break;
                 case "Emotion Chip":
                     hasEmotionChip = 1;
+                    countEmotionChip = relic.counter;
                     break;
                 case "Enchiridion":
                     hasEnchiridion = 1;
+                    countEnchiridion = relic.counter;
                     break;
                 case "Eternal Feather":
                     hasEternalFeather = 1;
+                    countEternalFeather = relic.counter;
                     break;
                 case "Frozen Egg":
                     hasFrozenEgg = 1;
+                    countFrozenEgg = relic.counter;
                     break;
                 case "Frozen Egg 2":
                     hasFrozenEgg2 = 1;
+                    countFrozenEgg2 = relic.counter;
                     break;
                 case "Frozen Eye":
                     hasFrozenEye = 1;
+                    countFrozenEye = relic.counter;
                     break;
                 case "Gambling Chip":
                     hasGamblingChip = 1;
+                    countGamblingChip = relic.counter;
                     break;
                 case "Ginger":
                     hasGinger = 1;
+                    countGinger = relic.counter;
                     break;
                 case "Girya":
                     hasGirya = 1;
+                    countGirya = relic.counter;
                     break;
                 case "Golden Idol":
                     hasGoldenIdol = 1;
+                    countGoldenIdol = relic.counter;
                     break;
                 case "Gremlin Horn":
                     hasGremlinHorn = 1;
+                    countGremlinHorn = relic.counter;
                     break;
                 case "Happy Flower":
                     hasHappyFlower = 1;
+                    countHappyFlower = relic.counter;
                     break;
                 case "Ice Cream":
                     hasIceCream = 1;
+                    countIceCream = relic.counter;
                     break;
                 case "Inserter":
                     hasInserter = 1;
+                    countInserter = relic.counter;
                     break;
                 case "Juzu Bracelet":
                     hasJuzuBracelet = 1;
+                    countJuzuBracelet = relic.counter;
                     break;
                 case "Kunai":
                     hasKunai = 1;
+                    countKunai = relic.counter;
                     break;
                 case "Lantern":
                     hasLantern = 1;
+                    countLantern = relic.counter;
                     break;
                 case "Lee's Waffle":
                     hasLeesWaffle = 1;
+                    countLeesWaffle = relic.counter;
                     break;
                 case "Letter Opener":
                     hasLetterOpener = 1;
+                    countLetterOpener = relic.counter;
                     break;
                 case "Living Blade":
                     hasLivingBlade = 1;
+                    countLivingBlade = relic.counter;
                     break;
                 case "Lizard Tail":
                     hasLizardTail = 1;
+                    countLizardTail = relic.counter;
                     break;
                 case "Magic Flower":
                     hasMagicFlower = 1;
+                    countMagicFlower = relic.counter;
                     break;
                 case "Mango":
                     hasMango = 1;
+                    countMango = relic.counter;
                     break;
                 case "Mark of Pain":
                     hasMarkofPain = 1;
+                    countMarkofPain = relic.counter;
                     break;
                 case "Matryoshka":
                     hasMatryoshka = 1;
+                    countMatryoshka = relic.counter;
                     break;
                 case "Meat on the Bone":
                     hasMeatontheBone = 1;
+                    countMeatontheBone = relic.counter;
                     break;
                 case "Medical Kit":
                     hasMedicalKit = 1;
+                    countMedicalKit = relic.counter;
                     break;
                 case "Membership Card":
                     hasMembershipCard = 1;
+                    countMembershipCard = relic.counter;
                     break;
                 case "Mercury Hourglass":
                     hasMercuryHourglass = 1;
+                    countMercuryHourglass = relic.counter;
                     break;
                 case "Molten Egg":
                     hasMoltenEgg = 1;
+                    countMoltenEgg = relic.counter;
                     break;
                 case "Molten Egg 2":
                     hasMoltenEgg2 = 1;
+                    countMoltenEgg2 = relic.counter;
                     break;
                 case "Mummified Hand":
                     hasMummifiedHand = 1;
+                    countMummifiedHand = relic.counter;
                     break;
                 case "Necronomicon":
                     hasNecronomicon = 1;
+                    countNecronomicon = relic.counter;
                     break;
                 case "NeowsBlessing":
                     hasNeowsBlessing = 1;
+                    countNeowsBlessing = relic.counter;
                     break;
                 case "Nilry's Codex":
                     hasNilrysCodex = 1;
+                    countNilrysCodex = relic.counter;
                     break;
                 case "Nine Lives":
                     hasNineLives = 1;
+                    countNineLives = relic.counter;
                     break;
                 case "Ninja Scroll":
                     hasNinjaScroll = 1;
+                    countNinjaScroll = relic.counter;
                     break;
                 case "Nloth's Gift":
                     hasNlothsGift = 1;
+                    countNlothsGift = relic.counter;
                     break;
                 case "Nuclear Battery":
                     hasNuclearBattery = 1;
+                    countNuclearBattery = relic.counter;
                     break;
                 case "Nullstone Periapt":
                     hasNullstonePeriapt = 1;
+                    countNullstonePeriapt = relic.counter;
                     break;
                 case "Odd Mushroom":
                     hasOddMushroom = 1;
+                    countOddMushroom = relic.counter;
                     break;
                 case "Oddly Smooth Stone":
                     hasOddlySmoothStone = 1;
+                    countOddlySmoothStone = relic.counter;
                     break;
                 case "Old Coin":
                     hasOldCoin = 1;
+                    countOldCoin = relic.counter;
                     break;
                 case "Omamori":
                     hasOmamori = 1;
+                    countOmamori = relic.counter;
                     break;
                 case "Orichalcum":
                     hasOrichalcum = 1;
+                    countOrichalcum = relic.counter;
                     break;
                 case "Ornamental Fan":
                     hasOrnamentalFan = 1;
+                    countOrnamentalFan = relic.counter;
                     break;
                 case "Orrery":
                     hasOrrery = 1;
+                    countOrrery = relic.counter;
                     break;
                 case "Pandora's Box":
                     hasPandorasBox = 1;
+                    countPandorasBox = relic.counter;
                     break;
                 case "Pantograph":
                     hasPantograph = 1;
+                    countPantograph = relic.counter;
                     break;
                 case "Paper Crane":
                     hasPaperCrane = 1;
+                    countPaperCrane = relic.counter;
                     break;
                 case "Paper Frog":
                     hasPaperFrog = 1;
+                    countPaperFrog = relic.counter;
                     break;
                 case "Peace Pipe":
                     hasPeacePipe = 1;
+                    countPeacePipe = relic.counter;
                     break;
                 case "Pear":
                     hasPear = 1;
+                    countPear = relic.counter;
                     break;
                 case "Pen Nib":
                     hasPenNib = 1;
+                    countPenNib = relic.counter;
                     break;
                 case "Philosopher's Stone":
                     hasPhilosophersStone = 1;
+                    countPhilosophersStone = relic.counter;
                     break;
                 case "Potion Belt":
                     hasPotionBelt = 1;
+                    countPotionBelt = relic.counter;
                     break;
                 case "Prayer Wheel":
                     hasPrayerWheel = 1;
+                    countPrayerWheel = relic.counter;
                     break;
                 case "Question Card":
                     hasQuestionCard = 1;
+                    countQuestionCard = relic.counter;
                     break;
                 case "Red Circlet":
                     hasRedCirclet = 1;
+                    countRedCirclet = relic.counter;
                     break;
                 case "Red Mask":
                     hasRedMask = 1;
+                    countRedMask = relic.counter;
                     break;
                 case "Red Skull":
                     hasRedSkull = 1;
+                    countRedSkull = relic.counter;
                     break;
                 case "Regal Pillow":
                     hasRegalPillow = 1;
+                    countRegalPillow = relic.counter;
                     break;
                 case "Ring of the Serpent":
                     hasRingoftheSerpent = 1;
+                    countRingoftheSerpent = relic.counter;
                     break;
                 case "Ring of the Snake":
                     hasRingoftheSnake = 1;
+                    countRingoftheSnake = relic.counter;
                     break;
                 case "Runic Capacitor":
                     hasRunicCapacitor = 1;
+                    countRunicCapacitor = relic.counter;
                     break;
                 case "Runic Cube":
                     hasRunicCube = 1;
+                    countRunicCube = relic.counter;
                     break;
                 case "Runic Dome":
                     hasRunicDome = 1;
+                    countRunicDome = relic.counter;
                     break;
                 case "Runic Pyramid":
                     hasRunicPyramid = 1;
+                    countRunicPyramid = relic.counter;
                     break;
                 case "Self Forming Clay":
                     hasSelfFormingClay = 1;
+                    countSelfFormingClay = relic.counter;
                     break;
                 case "Shovel":
                     hasShovel = 1;
+                    countShovel = relic.counter;
                     break;
                 case "Shuriken":
                     hasShuriken = 1;
+                    countShuriken = relic.counter;
                     break;
                 case "Singing Bowl":
                     hasSingingBowl = 1;
+                    countSingingBowl = relic.counter;
                     break;
                 case "Smiling Mask":
                     hasSmilingMask = 1;
+                    countSmilingMask = relic.counter;
                     break;
                 case "Snake Skull":
                     hasSnakeSkull = 1;
+                    countSnakeSkull = relic.counter;
                     break;
                 case "Snecko Eye":
                     hasSneckoEye = 1;
+                    countSneckoEye = relic.counter;
                     break;
                 case "Sozu":
                     hasSozu = 1;
+                    countSozu = relic.counter;
                     break;
                 case "Spirit Poop":
                     hasSpiritPoop = 1;
+                    countSpiritPoop = relic.counter;
                     break;
                 case "Strange Spoon":
                     hasStrangeSpoon = 1;
+                    countStrangeSpoon = relic.counter;
                     break;
                 case "Strawberry":
                     hasStrawberry = 1;
+                    countStrawberry = relic.counter;
                     break;
                 case "Sundial":
                     hasSundial = 1;
+                    countSundial = relic.counter;
                     break;
                 case "Symbiotic Virus":
                     hasSymbioticVirus = 1;
+                    countSymbioticVirus = relic.counter;
                     break;
                 case "Test 1":
                     hasTest1 = 1;
+                    countTest1 = relic.counter;
                     break;
                 case "Test 2":
                     hasTest2 = 1;
+                    countTest2 = relic.counter;
                     break;
                 case "Test 3":
                     hasTest3 = 1;
+                    countTest3 = relic.counter;
                     break;
                 case "Test 4":
                     hasTest4 = 1;
+                    countTest4 = relic.counter;
                     break;
                 case "Test 5":
                     hasTest5 = 1;
+                    countTest5 = relic.counter;
                     break;
                 case "Test 6":
                     hasTest6 = 1;
+                    countTest6 = relic.counter;
                     break;
                 case "Test 7":
                     hasTest7 = 1;
+                    countTest7 = relic.counter;
                     break;
                 case "Test 8":
                     hasTest8 = 1;
+                    countTest8 = relic.counter;
                     break;
                 case "The Courier":
                     hasTheCourier = 1;
+                    countTheCourier = relic.counter;
                     break;
                 case "The Specimen":
                     hasTheSpecimen = 1;
+                    countTheSpecimen = relic.counter;
                     break;
                 case "Thread and Needle":
                     hasThreadandNeedle = 1;
+                    countThreadandNeedle = relic.counter;
                     break;
                 case "Tingsha":
                     hasTingsha = 1;
+                    countTingsha = relic.counter;
                     break;
                 case "Tiny Chest":
                     hasTinyChest = 1;
+                    countTinyChest = relic.counter;
                     break;
                 case "Tiny House":
                     hasTinyHouse = 1;
+                    countTinyHouse = relic.counter;
                     break;
                 case "Toolbox":
                     hasToolbox = 1;
+                    countToolbox = relic.counter;
                     break;
                 case "Torii":
                     hasTorii = 1;
+                    countTorii = relic.counter;
                     break;
                 case "Tough Bandages":
                     hasToughBandages = 1;
+                    countToughBandages = relic.counter;
                     break;
                 case "Toxic Egg":
                     hasToxicEgg = 1;
+                    countToxicEgg = relic.counter;
                     break;
                 case "Toxic Egg 2":
                     hasToxicEgg2 = 1;
+                    countToxicEgg2 = relic.counter;
                     break;
                 case "Toy Ornithopter":
                     hasToyOrnithopter = 1;
+                    countToyOrnithopter = relic.counter;
                     break;
                 case "Turnip":
                     hasTurnip = 1;
+                    countTurnip = relic.counter;
                     break;
                 case "Unceasing Top":
                     hasUnceasingTop = 1;
+                    countUnceasingTop = relic.counter;
                     break;
                 case "Vajra":
                     hasVajra = 1;
+                    countVajra = relic.counter;
                     break;
                 case "Velvet Choker":
                     hasVelvetChoker = 1;
+                    countVelvetChoker = relic.counter;
                     break;
                 case "War Paint":
                     hasWarPaint = 1;
+                    countWarPaint = relic.counter;
                     break;
                 case "Whetstone":
                     hasWhetstone = 1;
+                    countWhetstone = relic.counter;
                     break;
                 case "White Beast Statue":
                     hasWhiteBeastStatue = 1;
+                    countWhiteBeastStatue = relic.counter;
                     break;
                 case "Boot":
                     hasBoot = 1;
+                    countBoot = relic.counter;
                     break;
                 case "Mark of the Bloom":
                     hasMarkoftheBloom = 1;
+                    countMarkoftheBloom = relic.counter;
                     break;
                 case "Busted Crown":
                     hasBustedCrown = 1;
+                    countBustedCrown = relic.counter;
                     break;
                 case "Incense Burner":
                     hasIncenseBurner = 1;
+                    countIncenseBurner = relic.counter;
                     break;
                 case "Empty Cage":
                     hasEmptyCage = 1;
+                    countEmptyCage = relic.counter;
                     break;
                 case "Fusion Hammer":
                     hasFusionHammer = 1;
+                    countFusionHammer = relic.counter;
                     break;
                 case "Coffee Dripper":
                     hasCoffeeDripper = 1;
+                    countCoffeeDripper = relic.counter;
                     break;
                 case "SsserpentHead":
                     hasSsserpentHead = 1;
+                    countSsserpentHead = relic.counter;
                     break;
                 case "MutagenicStrength":
                     hasMutagenicStrength = 1;
+                    countMutagenicStrength = relic.counter;
                     break;
                 case "FaceOfCleric":
                     hasFaceOfCleric = 1;
+                    countFaceOfCleric = relic.counter;
                     break;
                 case "NlothsMask":
                     hasNlothsMask = 1;
+                    countNlothsMask = relic.counter;
                     break;
                 case "GremlinMask":
                     hasGremlinMask = 1;
+                    countGremlinMask = relic.counter;
                     break;
                 case "CultistMask":
                     hasCultistMask = 1;
+                    countCultistMask = relic.counter;
                     break;
                 case "TheAbacus":
                     hasTheAbacus = 1;
+                    countTheAbacus = relic.counter;
                     break;
                 case "DollysMirror":
                     hasDollysMirror = 1;
+                    countDollysMirror = relic.counter;
                     break;
                 case "ClockworkSouvenir":
                     hasClockworkSouvenir = 1;
+                    countClockworkSouvenir = relic.counter;
                     break;
                 case "MealTicket":
                     hasMealTicket = 1;
+                    countMealTicket = relic.counter;
                     break;
                 case "TwistedFunnel":
                     hasTwistedFunnel = 1;
+                    countTwistedFunnel = relic.counter;
                     break;
                 case "HandDrill":
                     hasHandDrill = 1;
+                    countHandDrill = relic.counter;
                     break;
                 case "HoveringKite":
                     hasHoveringKite = 1;
+                    countHoveringKite = relic.counter;
                     break;
                 case "Sling":
                     hasSling = 1;
+                    countSling = relic.counter;
                     break;
                 case "OrangePellets":
                     hasOrangePellets = 1;
+                    countOrangePellets = relic.counter;
                     break;
                 case "WristBlade":
                     hasWristBlade = 1;
+                    countWristBlade = relic.counter;
                     break;
                 case "StoneCalendar":
                     hasStoneCalendar = 1;
+                    countStoneCalendar = relic.counter;
                     break;
                 case "Nunchaku":
                     hasNunchaku = 1;
+                    countNunchaku = relic.counter;
                     break;
                 case "Brimstone":
                     hasBrimstone = 1;
+                    countBrimstone = relic.counter;
                     break;
                 case "PreservedInsect":
                     hasPreservedInsect = 1;
+                    countPreservedInsect = relic.counter;
                     break;
                 case "Pocketwatch":
                     hasPocketwatch = 1;
+                    countPocketwatch = relic.counter;
                     break;
                 case "FossilizedHelix":
                     hasFossilizedHelix = 1;
+                    countFossilizedHelix = relic.counter;
                     break;
                 case "PrismaticShard":
                     hasPrismaticShard = 1;
+                    countPrismaticShard = relic.counter;
                     break;
                 case "WarpedTongs":
                     hasWarpedTongs = 1;
+                    countWarpedTongs = relic.counter;
                     break;
                 case "WingedGreaves":
                     hasWingedGreaves = 1;
+                    countWingedGreaves = relic.counter;
                     break;
                 case "MawBank":
                     hasMawBank = 1;
+                    countMawBank = relic.counter;
                     break;
             }
 

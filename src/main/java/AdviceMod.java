@@ -90,7 +90,7 @@ public class AdviceMod implements PostDungeonInitializeSubscriber, PostUpdateSub
     {
         if ( AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP && AbstractDungeon.getCurrRoom().phase == com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMPLETE && !(AbstractDungeon.getCurrRoom() instanceof TreasureRoomBoss))
         {
-            invokeNextMapNode();
+            //invokeNextMapNode();
         }
     }
 

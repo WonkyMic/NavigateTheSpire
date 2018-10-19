@@ -11,7 +11,7 @@ import java.lang.reflect.Field;
 @SpirePatch(
         clz=GridCardSelectScreen.class,
         method="update",
-        paramtypes={        }
+        paramtypez={        }
 )
 public class GridCardSelectScreenPatch {
     @SpireInsertPatch(
@@ -27,16 +27,16 @@ public class GridCardSelectScreenPatch {
             int numCards = (int)f1.get(screen);
             Field f2 = c.getDeclaredField("targetGroup");
             f2.setAccessible(true);
+            Field f3 = c.getDeclaredField("cardSelectAmount");
+            f3.setAccessible(true);
             CardGroup group = (CardGroup)f2.get(screen);
-            for (int i = 0; i < numCards; i++) {
+            if ((int)f3.get(screen) < numCards) {
                     Field f = c.getDeclaredField("hoveredCard");
                     f.setAccessible(true);
-                    AbstractCard card = (AbstractCard)f.get(screen);
-                    card = group.group.get(0);
-                    card.hb.hovered = true;
-                    card.hb.clicked = true;
-                    f.set(screen, group.group.get(0));
-                    System.out.println("card name to remove: " + card.name);
+                    group.group.get((int)f3.get(screen)).hb.hovered = true;
+                    group.group.get((int)f3.get(screen)).hb.clicked = true;
+                    f.set(screen, group.group.get((int)f3.get(screen)));
+                    System.out.println("card name to remove: " + group.group.get((int)f3.get(screen)).name);
                 }
             }
         catch (IllegalAccessException | NoSuchFieldException e) {

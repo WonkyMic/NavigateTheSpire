@@ -9,6 +9,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import powers.AutoPlayFormPower;
 
+import javax.ws.rs.ProcessingException;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 
 public class AutoPlayRelic extends CustomRelic {
     public static final String ID = "Navi";
@@ -44,6 +51,27 @@ public class AutoPlayRelic extends CustomRelic {
     public void atTurnStartPostDraw()
     {
         System.out.println("atTurnStartPostDraw From Relic");
+        String URL = "http://127.0.0.1:5000/navi/turn-start-endpoint";
+        Client client = ClientBuilder.newClient();
+        try
+        {
+            Response resp = client.target(URL)
+                    .request(MediaType.APPLICATION_JSON)
+                    .post(Entity.json(""));
+
+            if ( 200 == resp.getStatus() )
+            {
+                System.out.println("JsonDump :: client call response OK (200)." );//+ resp.readEntity(String.class));
+            }
+            else
+            {
+                System.out.println("ERROR :: response from :: " + URL + " :: was not OK(200), please check that service is running properly.");
+            }
+        }
+        catch ( ProcessingException ex )
+        {
+            ex.printStackTrace();
+        }
         AbstractDungeon.actionManager.addToBottom(new actions.PlayCardFromHandAction());
     }
 
